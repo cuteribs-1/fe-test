@@ -1,0 +1,41 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>fe test1</title>
+</head>
+
+<body style="background-color: #000000;">
+	<script type="text/javascript" src="phaser.min.js"></script>
+	<script type="text/javascript">
+		window.onload = function () {
+			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+			var mspf = 1000 / 60;
+			var player1;
+
+			function preload() {
+				game.load.image('logo', 'assets/img/GameIntroScreen.png');
+				game.load.spritesheet('actor', 'assets/img/Act01.png', 16, 16);
+			}
+
+			function create() {
+				game.scale.pageAlignHorizontally = true;
+				game.scale.pageAlignVertically = true;
+				game.scale.refresh();
+
+				var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+				logo.anchor.setTo(0.5, 0.5);
+
+				player1 = game.add.sprite(0, 0, 'actor');
+				player1.animations.add('1', [9, 10, 11, 10], 4, true);
+				player1.scale.setTo(2, 2);
+			}
+
+			function update() {
+				player1.animations.play('1');
+			}
+		};
+	</script>
+</body>
+
+</html>
