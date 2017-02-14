@@ -9,12 +9,19 @@
 	<script type="text/javascript" src="phaser.min.js"></script>
 	<script type="text/javascript">
 		window.onload = function () {
-			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+			var game = new Phaser.Game(800, 600, 
+				Phaser.AUTO, 
+				'', 
+				{ preload: preload, create: create, update: update },
+				true,
+				false
+			);
 			var mspf = 1000 / 60;
-			var player1;
+			var map, player1;
 
 			function preload() {
-				game.load.image('logo', 'assets/img/GameIntroScreen.png');
+				// game.load.image('logo', 'assets/img/GameIntroScreen.png');
+				game.load.tilemap('map', 'assets/map01.json', null, Phaser.Tilemap.TILED_JSON)
 				game.load.spritesheet('actor', 'assets/img/Act01.png', 16, 16);
 			}
 
@@ -25,6 +32,11 @@
 
 				var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
 				logo.anchor.setTo(0.5, 0.5);
+
+				map = game.add.tilemap('map', 16, 16, 21, 25);
+				map.addTilesetImage('map01', 'map');
+
+				var layer = map.createLayer('layer-map');
 
 				player1 = game.add.sprite(0, 0, 'actor');
 				player1.animations.add('1', [9, 10, 11, 10], 4, true);
