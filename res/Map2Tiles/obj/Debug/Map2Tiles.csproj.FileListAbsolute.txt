@@ -1,0 +1,7 @@
+E:\github\Map2Tiles\bin\Debug\Map2Tiles.exe.config
+E:\github\Map2Tiles\bin\Debug\Map2Tiles.exe
+E:\github\Map2Tiles\bin\Debug\Map2Tiles.pdb
+E:\github\Map2Tiles\obj\Debug\Map2Tiles.csprojResolveAssemblyReference.cache
+E:\github\Map2Tiles\obj\Debug\Map2Tiles.exe
+E:\github\Map2Tiles\obj\Debug\Map2Tiles.pdb
+E:\github\Map2Tiles\bin\Debug\map01.png
