@@ -1,0 +1,7 @@
+This is the info for the last game you ran.
+
+File: 776c.smc Header: Yes
+FireEmblem5C              TYPE:NORMAL   
+INTERLEAVED:No               CHKSUM:FAIL
+VIDEO:NTSC    BANK:Lo     CRC32:2F69AA3E
+BAD ROM                                 
