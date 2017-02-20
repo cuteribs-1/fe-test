@@ -9,7 +9,7 @@
 
 static void Main(string[] args)
 		{
-			dosomething();
+			temp();
 		}
 
 		static void MapToTiles()
@@ -71,43 +71,117 @@ static void Main(string[] args)
 			}
 		}
 		
-static void dosomething()
+		static void stand()
 		{
-			var src = Image.FromFile(@"C:\Users\Eric\Documents\GitHub\fe-test\res\Map2Tiles\bin\Debug\stand3.png");
-			var tmp = new Bitmap(16 * 8 * 39, 8);
-			var tgt = new Bitmap(16 * 15, 24 * 7);
-			var g = Graphics.FromImage(tmp);
+			var src = Image.FromFile("stand2-1.png");
+			var tgt = new Bitmap(720, 128);
+			var g = Graphics.FromImage(tgt);
 			var n = 0; var nx = 0; var ny = 0;
 
-			for (var y = 0; y < 39; y++)
+			for (var y = 0; y < 96; y++)
 			{
-				for (var x = 0; x < 8; x++)
-				{
-					g.DrawImage(src, new Rectangle(n * 16, 0, 16, 8), new Rectangle(x * 16, y * 8, 16, 8), GraphicsUnit.Pixel);
-					n++;
-					nx++;
-				}
-			}
-			
-			tmp.Save(@"C:\Users\Eric\Documents\GitHub\fe-test\res\Map2Tiles\bin\Debug\stand3-1.png", ImageFormat.Png);
-			g = Graphics.FromImage(tgt);
-			n = nx = ny = 0;
-			
-			for (var i = 0; i < 8 * 39; i++)
-			{
-				if (n > 0 && n % 15 == 0)
+				if (n > 1 && n % 8 == 0)
 				{
 					nx = 0;
 					ny++;
 				}
-							
-				g.DrawImage(tmp, new Rectangle(nx * 16, ny * 24, 16, 8), new Rectangle(i * 48 + 32, 0, 16, 8), GraphicsUnit.Pixel);
-				g.DrawImage(tmp, new Rectangle(nx * 16, ny * 24 + 8, 16, 8), new Rectangle(i * 48, 0, 16, 8), GraphicsUnit.Pixel);
-				g.DrawImage(tmp, new Rectangle(nx * 16, ny * 24 + 16, 16, 8), new Rectangle(i * 48 + 16, 0, 16, 8), GraphicsUnit.Pixel);
 				
-				n++;
-				nx++;
+				for (var x = 0; x < 1; x++)
+				{
+
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 0, 32, 8), new Rectangle(x * 32, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 8, 32, 8), new Rectangle(x * 32 + 64, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 16, 32, 8), new Rectangle(x * 32 + 32, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 24, 32, 8), new Rectangle(x * 32 + 96, y * 8, 32, 8), GraphicsUnit.Pixel);
+				}
+					n++;
+					nx++;
 			}
 
-			tgt.Save(@"C:\Users\Eric\Documents\GitHub\fe-test\res\Map2Tiles\bin\Debug\stand3-2.png", ImageFormat.Png);
+			tgt.Save("1-1.png", ImageFormat.Png);
+		}
+		
+		static void horseman()
+		{
+			var src = Image.FromFile("1.png");
+			var tgt = new Bitmap(256, 128);
+			var g = Graphics.FromImage(tgt);
+			var n = 0; var nx = 0; var ny = 0;
+
+			for (var y = 0; y < 96; y++)
+			{
+					if (n > 1 && n % 8 == 0)
+					{
+						nx = 0;
+						ny++;
+					}
+				for (var x = 0; x < 1; x++)
+				{
+
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 0, 32, 8), new Rectangle(x * 32, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 8, 32, 8), new Rectangle(x * 32 + 64, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 16, 32, 8), new Rectangle(x * 32 + 32, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 24, 32, 8), new Rectangle(x * 32 + 96, y * 8, 32, 8), GraphicsUnit.Pixel);
+				}
+					n++;
+					nx++;
+			}
+
+			tgt.Save("1-1.png", ImageFormat.Png);
+		}
+		
+		
+		static void flyingman()
+		{
+			var src = Image.FromFile("2.png");
+			var tgt = new Bitmap(256, 96);
+			var g = Graphics.FromImage(tgt);
+			var n = 0; var nx = 0; var ny = 0;
+
+			for (var y = 0; y < 16; y++)
+			{
+				for (var x = 0; x < 1; x++)
+				{
+					if (n > 1 && n % 8 == 0)
+					{
+						nx = 0;
+						ny++;
+					}
+
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 48 + 8, 32, 8), new Rectangle(x * 32, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 48 + 16, 32, 8), new Rectangle(x * 32 + 64, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 48 + 24, 32, 8), new Rectangle(x * 32 + 32, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 48 + 32, 32, 8), new Rectangle(x * 32 + 96, y * 8, 32, 8), GraphicsUnit.Pixel);
+					n++;
+					nx++;
+				}
+			}
+
+			tgt.Save("2-1.png", ImageFormat.Png);
+		}
+		
+		static void temp()
+		{
+			var src = Image.FromFile("stand3.png");
+			var tgt = new Bitmap(768, 120);
+			var g = Graphics.FromImage(tgt);
+			var n = 11; var nx = n * 48; var ny = 0;
+
+			for (var y = 0; y < 15; y++)
+			{
+				for (var x = 0; x < 5; x++)
+				{
+					if (n > 1 && n % 16 == 0)
+					{
+						nx = 0;
+						ny++;
+					}
+
+					g.DrawImage(src, new Rectangle(nx * 48, ny * 24 + 4, 48, 24), new Rectangle(x * 48, y * 24, 48, 24), GraphicsUnit.Pixel);
+					n++;
+					nx++;
+				}
+			}
+
+			tgt.Save("stand3-1.png", ImageFormat.Png);
 		}

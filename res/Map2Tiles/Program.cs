@@ -79,29 +79,31 @@ namespace Map2Tiles
 
 		static void dosomething()
 		{
-			var src = Image.FromFile("weapon02.png");
-			var tgt = new Bitmap(256, 84);
+			var src = Image.FromFile("1.png");
+			var tgt = new Bitmap(256, 64);
 			var g = Graphics.FromImage(tgt);
-			var n = 1; var nx = 0; var ny = 0;
+			var n = 0; var nx = 0; var ny = 0;
 
-			for (var y = 0; y < 17; y++)
+			for (var y = 0; y < 16; y++)
 			{
-				for (var x = 0; x < 4; x++)
+				for (var x = 0; x < 1; x++)
 				{
-					if (n % 16 == 0)
+					if (n > 1 && n % 8 == 0)
 					{
 						nx = 0;
 						ny++;
 					}
 
-					g.DrawImage(src, new Rectangle(nx * 16, ny * 16, 16, 8), new Rectangle(x * 32, y * 8, 16, 8), GraphicsUnit.Pixel);
-					g.DrawImage(src, new Rectangle(nx * 16, ny * 16 + 8, 16, 8), new Rectangle(x * 32 + 16, y * 8, 16, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32, 32, 8), new Rectangle(x * 32, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 8, 32, 8), new Rectangle(x * 32 + 32, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 16, 32, 8), new Rectangle(x * 32 + 64, y * 8, 32, 8), GraphicsUnit.Pixel);
+					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 24, 32, 8), new Rectangle(x * 32 + 96, y * 8, 32, 8), GraphicsUnit.Pixel);
 					n++;
 					nx++;
 				}
 			}
 
-			tgt.Save("weapon02-1.png", ImageFormat.Png);
+			tgt.Save("1-1.png", ImageFormat.Png);
 		}
 	}
 }

@@ -5,3 +5,10 @@ E:\github\Map2Tiles\obj\Debug\Map2Tiles.csprojResolveAssemblyReference.cache
 E:\github\Map2Tiles\obj\Debug\Map2Tiles.exe
 E:\github\Map2Tiles\obj\Debug\Map2Tiles.pdb
 E:\github\Map2Tiles\bin\Debug\map01.png
+E:\github\fe-test\res\Map2Tiles\bin\Debug\map01.png
+E:\github\fe-test\res\Map2Tiles\bin\Debug\Map2Tiles.exe.config
+E:\github\fe-test\res\Map2Tiles\bin\Debug\Map2Tiles.exe
+E:\github\fe-test\res\Map2Tiles\bin\Debug\Map2Tiles.pdb
+E:\github\fe-test\res\Map2Tiles\obj\Debug\Map2Tiles.csprojResolveAssemblyReference.cache
+E:\github\fe-test\res\Map2Tiles\obj\Debug\Map2Tiles.exe
+E:\github\fe-test\res\Map2Tiles\obj\Debug\Map2Tiles.pdb
