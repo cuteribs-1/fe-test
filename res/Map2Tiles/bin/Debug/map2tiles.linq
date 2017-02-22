@@ -9,54 +9,53 @@
 
 static void Main(string[] args)
 		{
-			temp();
+			MapToTiles(8);
 		}
 
-		static void MapToTiles()
+		static void MapToTiles(int t)
 		{
 			var md5 = MD5.Create();
 			var converter = new ImageConverter();
 
 			var img = Image.FromFile("map01.png");
-			var tileWidth = 16;
-			var tileHeight = 16;
-			var pcs = new Image[img.Size.Height / tileHeight, img.Size.Width / tileWidth];
+			//var pcs = new Image[img.Size.Height / t, img.Size.Width / t];
 			var tiles = new List<KeyValuePair<string, Image>>();
+			Bitmap bmp;
 			Graphics graphics;
 			string key;
 
-			for (var x = 0; x < pcs.GetLength(0); x++)
+			for (var y = 0; y < img.Size.Height / t; y++)
 			{
-				for (var y = 0; y < pcs.GetLength(1); y++)
+				for (var x = 0; x < img.Size.Width / t; x++)
 				{
-					pcs[x, y] = new Bitmap(tileWidth, tileHeight);
+					bmp = new Bitmap(t, t);
 
-					using (graphics = Graphics.FromImage(pcs[x, y]))
+					using (graphics = Graphics.FromImage(bmp))
 					{
-						graphics.DrawImage(img, new Rectangle(0, 0, tileWidth, tileHeight), new Rectangle(16 * x, 16 * y, 16, 16), GraphicsUnit.Pixel);
+						graphics.DrawImage(img, new Rectangle(0, 0, t, t), new Rectangle(t * x, t * y, t, t), GraphicsUnit.Pixel);
 					}
 
-					key = BitConverter.ToString(md5.ComputeHash(converter.ConvertTo(pcs[x, y], typeof(byte[])) as byte[]));
+					key = BitConverter.ToString(md5.ComputeHash(converter.ConvertTo(bmp, typeof(byte[])) as byte[]));
 
 					if (tiles.Any(p => p.Key == key))
 					{
 						continue;
 					}
 
-					tiles.Add(new KeyValuePair<string, Image>(key, pcs[x, y]));
+					tiles.Add(new KeyValuePair<string, Image>(key, bmp));
 				}
 			}
 
-			var lines = (int)Math.Floor(tiles.Count / 16d);
-			var tileImage = new Bitmap(16 * 16, lines * 16);
+			var lines = (int)Math.Floor(tiles.Count / 32d);
+			var tileImage = new Bitmap(32 * t, lines * t);
 			var n = 0;
 			graphics = Graphics.FromImage(tileImage);
 
 			for (var y = 0; y < lines; y++)
 			{
-				for (var x = 0; x < 16 && n < tiles.Count; x++)
+				for (var x = 0; x < 32 && n < tiles.Count; x++)
 				{
-					graphics.DrawImage(tiles[y * 16 + x].Value, new Rectangle(x * 16, y * 16, tileWidth, tileHeight), new Rectangle(0, 0, tileWidth, tileWidth), GraphicsUnit.Pixel);
+					graphics.DrawImage(tiles[y * t + x].Value, new Rectangle(x * t, y * t, t, t), new Rectangle(0, 0, t, t), GraphicsUnit.Pixel);
 				}
 			}
 
@@ -64,9 +63,9 @@ static void Main(string[] args)
 
 			using (var sw = new StreamWriter("map01-tileset.txt"))
 			{
-				foreach (var t in tiles)
+				foreach (var tile in tiles)
 				{
-					sw.WriteLine(t.Key);
+					sw.WriteLine(tile.Key);
 				}
 			}
 		}
