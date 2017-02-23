@@ -20,6 +20,7 @@ static void Main(string[] args)
 			var img = Image.FromFile("map01.png");
 			//var pcs = new Image[img.Size.Height / t, img.Size.Width / t];
 			var tiles = new List<KeyValuePair<string, Image>>();
+			Rectange rct;
 			Bitmap bmp;
 			Graphics graphics;
 			string key;
@@ -35,7 +36,8 @@ static void Main(string[] args)
 						graphics.DrawImage(img, new Rectangle(0, 0, t, t), new Rectangle(t * x, t * y, t, t), GraphicsUnit.Pixel);
 					}
 
-					key = BitConverter.ToString(md5.ComputeHash(converter.ConvertTo(bmp, typeof(byte[])) as byte[]));
+					var bytes = (byte[])converter.ConvertTo(bmp, typeof(byte[]));
+					key = BitConverter.ToString(md5.ComputeHash(bytes));					
 
 					if (tiles.Any(p => p.Key == key))
 					{
@@ -56,16 +58,21 @@ static void Main(string[] args)
 				for (var x = 0; x < 32 && n < tiles.Count; x++)
 				{
 					graphics.DrawImage(tiles[y * t + x].Value, new Rectangle(x * t, y * t, t, t), new Rectangle(0, 0, t, t), GraphicsUnit.Pixel);
+					
+					if((y == 1 && x == 10) || (y == 2 && x == 2))
+					{
+						tiles[y * t + x].Value.Save(string.Format("{0}-{1}.png", y, x ), ImageFormat.Png);
+					}
 				}
 			}
 
-			tileImage.Save("map01-tileset.png", ImageFormat.Png);
+			//tileImage.Save("map01-tileset.png", ImageFormat.Png);
 
 			using (var sw = new StreamWriter("map01-tileset.txt"))
 			{
 				foreach (var tile in tiles)
 				{
-					sw.WriteLine(tile.Key);
+					//sw.WriteLine(tile.Key);
 				}
 			}
 		}
