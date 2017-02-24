@@ -13,6 +13,14 @@ namespace Map2Tiles
 {
 	class Program
 	{
+		class Tile
+		{
+			public string Key { get; set; }
+			public int Index { get; set; }
+			public Point Position { get; set; }
+			public Bitmap Image { get; set; }
+		}
+
 		static void Main(string[] args)
 		{
 			MapToTiles(8);
@@ -20,62 +28,64 @@ namespace Map2Tiles
 
 		static void MapToTiles(int t)
 		{
-			var md5 = MD5.Create();
+			var md5 = SHA1.Create();
 			var converter = new ImageConverter();
 
 			var img = Image.FromFile("map01.png");
-			//var pcs = new Image[img.Size.Height / t, img.Size.Width / t];
-			var tiles = new List<KeyValuePair<string, Image>>();
+			var tiles = new List<Tile>();
 			Bitmap bmp;
 			Graphics graphics;
 			string key;
+			byte[] bytes;
+			Point position;
+			int n = 0;
 
-			for (var y = 0; y < img.Size.Height / t; y++)
+			using (var sw = new StreamWriter("map01-tileset.txt"))
 			{
-				for (var x = 0; x < img.Size.Width / t; x++)
+				for (var y = 0; y < img.Size.Height / t; y++)
 				{
-					bmp = new Bitmap(t, t);
-
-					using (graphics = Graphics.FromImage(bmp))
+					for (var x = 0; x < img.Size.Width / t; x++)
 					{
-						graphics.DrawImage(img, new Rectangle(0, 0, t, t), new Rectangle(t * x, t * y, t, t), GraphicsUnit.Pixel);
+						bmp = new Bitmap(t, t);
+
+						using (graphics = Graphics.FromImage(bmp))
+						{
+							graphics.DrawImage(img, new Rectangle(0, 0, t, t), new Rectangle(t * x, t * y, t, t), GraphicsUnit.Pixel);
+						}
+
+						bytes = converter.ConvertTo(bmp, typeof(byte[])) as byte[];
+						key = BitConverter.ToString(md5.ComputeHash(bytes.ToArray()));
+
+						if (tiles.Any(p => p.Key == key))
+						{
+							continue;
+						}
+
+						position = new Point(x * t, y * t);
+						tiles.Add(new Tile { Key = key, Position = position, Image = bmp });
+
+						sw.Write(string.Format("0x{0:x4},", n));
+
+						n++;
 					}
-
-					key = BitConverter.ToString(md5.ComputeHash(converter.ConvertTo(bmp, typeof(byte[])) as byte[]));
-
-					if (tiles.Any(p => p.Key == key))
-					{
-						continue;
-					}
-
-					tiles.Add(new KeyValuePair<string, Image>(key, bmp));
 				}
 			}
 
 			var lines = (int)Math.Floor(tiles.Count / 32d);
-			var tileImage = new Bitmap(32 * t, lines * t);
-			var n = 0;
+			var tileImage = new Bitmap(t * 32, t * lines);
 			graphics = Graphics.FromImage(tileImage);
 
 			for (var y = 0; y < lines; y++)
 			{
-				for (var x = 0; x < 32 && n < tiles.Count; x++)
+				for (var x = 0; x < 32; x++)
 				{
-					graphics.DrawImage(tiles[y * t + x].Value, new Rectangle(x * t, y * t, t, t), new Rectangle(0, 0, t, t), GraphicsUnit.Pixel);
+					graphics.DrawImage(tiles[y * 32 + x].Image, new Rectangle(x * t, y * t, t, t), new Rectangle(0, 0, t, t), GraphicsUnit.Pixel);
 				}
 			}
 
 			tileImage.Save("map01-tileset.png", ImageFormat.Png);
-
-			using (var sw = new StreamWriter("map01-tileset.txt"))
-			{
-				foreach (var tile in tiles)
-				{
-					sw.WriteLine(tile.Key);
-				}
-			}
 		}
-		
+
 		static void stand()
 		{
 			var src = Image.FromFile("stand2-1.png");
@@ -90,7 +100,7 @@ namespace Map2Tiles
 					nx = 0;
 					ny++;
 				}
-				
+
 				for (var x = 0; x < 1; x++)
 				{
 
@@ -99,13 +109,13 @@ namespace Map2Tiles
 					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 16, 32, 8), new Rectangle(x * 32 + 32, y * 8, 32, 8), GraphicsUnit.Pixel);
 					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 24, 32, 8), new Rectangle(x * 32 + 96, y * 8, 32, 8), GraphicsUnit.Pixel);
 				}
-					n++;
-					nx++;
+				n++;
+				nx++;
 			}
 
 			tgt.Save("1-1.png", ImageFormat.Png);
 		}
-		
+
 		static void horseman()
 		{
 			var src = Image.FromFile("1.png");
@@ -115,11 +125,11 @@ namespace Map2Tiles
 
 			for (var y = 0; y < 96; y++)
 			{
-					if (n > 1 && n % 8 == 0)
-					{
-						nx = 0;
-						ny++;
-					}
+				if (n > 1 && n % 8 == 0)
+				{
+					nx = 0;
+					ny++;
+				}
 				for (var x = 0; x < 1; x++)
 				{
 
@@ -128,14 +138,14 @@ namespace Map2Tiles
 					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 16, 32, 8), new Rectangle(x * 32 + 32, y * 8, 32, 8), GraphicsUnit.Pixel);
 					g.DrawImage(src, new Rectangle(nx * 32, ny * 32 + 24, 32, 8), new Rectangle(x * 32 + 96, y * 8, 32, 8), GraphicsUnit.Pixel);
 				}
-					n++;
-					nx++;
+				n++;
+				nx++;
 			}
 
 			tgt.Save("1-1.png", ImageFormat.Png);
 		}
-		
-		
+
+
 		static void flyingman()
 		{
 			var src = Image.FromFile("2.png");
@@ -164,7 +174,7 @@ namespace Map2Tiles
 
 			tgt.Save("2-1.png", ImageFormat.Png);
 		}
-		
+
 		static void temp()
 		{
 			var src = Image.FromFile("stand3.png");

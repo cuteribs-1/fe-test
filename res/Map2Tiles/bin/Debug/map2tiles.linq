@@ -7,6 +7,15 @@
   <Namespace>System.Security.Cryptography</Namespace>
 </Query>
 
+
+		class Tile
+		{
+			public string Key { get; set; }
+			public int Index { get; set; }
+			public Point Position { get; set; }
+			public Bitmap Image { get; set; }
+		}
+
 static void Main(string[] args)
 		{
 			MapToTiles(8);
@@ -14,67 +23,75 @@ static void Main(string[] args)
 
 		static void MapToTiles(int t)
 		{
-			var md5 = MD5.Create();
+			var md5 = SHA1.Create();
 			var converter = new ImageConverter();
 
 			var img = Image.FromFile("map01.png");
-			//var pcs = new Image[img.Size.Height / t, img.Size.Width / t];
-			var tiles = new List<KeyValuePair<string, Image>>();
-			Rectange rct;
+			var tiles = new List<Tile>();
 			Bitmap bmp;
 			Graphics graphics;
 			string key;
-
-			for (var y = 0; y < img.Size.Height / t; y++)
-			{
-				for (var x = 0; x < img.Size.Width / t; x++)
-				{
-					bmp = new Bitmap(t, t);
-
-					using (graphics = Graphics.FromImage(bmp))
-					{
-						graphics.DrawImage(img, new Rectangle(0, 0, t, t), new Rectangle(t * x, t * y, t, t), GraphicsUnit.Pixel);
-					}
-
-					var bytes = (byte[])converter.ConvertTo(bmp, typeof(byte[]));
-					key = BitConverter.ToString(md5.ComputeHash(bytes));					
-
-					if (tiles.Any(p => p.Key == key))
-					{
-						continue;
-					}
-
-					tiles.Add(new KeyValuePair<string, Image>(key, bmp));
-				}
-			}
-
-			var lines = (int)Math.Floor(tiles.Count / 32d);
-			var tileImage = new Bitmap(32 * t, lines * t);
-			var n = 0;
-			graphics = Graphics.FromImage(tileImage);
-
-			for (var y = 0; y < lines; y++)
-			{
-				for (var x = 0; x < 32 && n < tiles.Count; x++)
-				{
-					graphics.DrawImage(tiles[y * t + x].Value, new Rectangle(x * t, y * t, t, t), new Rectangle(0, 0, t, t), GraphicsUnit.Pixel);
-					
-					if((y == 1 && x == 10) || (y == 2 && x == 2))
-					{
-						tiles[y * t + x].Value.Save(string.Format("{0}-{1}.png", y, x ), ImageFormat.Png);
-					}
-				}
-			}
-
-			//tileImage.Save("map01-tileset.png", ImageFormat.Png);
+			byte[] bytes;
+			Point position;
+			int n = 0;
 
 			using (var sw = new StreamWriter("map01-tileset.txt"))
 			{
-				foreach (var tile in tiles)
+				for (var y = 0; y < img.Size.Height / t; y++)
 				{
-					//sw.WriteLine(tile.Key);
+					for (var x = 0; x < img.Size.Width / t; x++)
+					{
+						bmp = new Bitmap(t, t);
+						
+						if(x == 0 && y > 0)
+						{
+							sw.WriteLine();
+						}
+						
+						sw.Write(string.Format("0x{0:x4},", n));
+
+						using (graphics = Graphics.FromImage(bmp))
+						{
+							graphics.DrawImage(img, new Rectangle(0, 0, t, t), new Rectangle(t * x, t * y, t, t), GraphicsUnit.Pixel);
+						}
+
+						bytes = converter.ConvertTo(bmp, typeof(byte[])) as byte[];
+						key = BitConverter.ToString(md5.ComputeHash(bytes.ToArray()));
+
+						if (tiles.Any(p => p.Key == key))
+						{
+							continue;
+						}
+
+						position = new Point(x * t, y * t);
+						tiles.Add(new Tile { Key = key, Position = position, Image = bmp });
+
+						n++;
+					}
 				}
 			}
+
+			var mx = (int)Math.Ceiling(Math.Sqrt(tiles.Count));
+			var my = (int)Math.Ceiling(tiles.Count / (double)mx);
+			var tileImage = new Bitmap(t * mx, t * my);
+			graphics = Graphics.FromImage(tileImage);
+
+			for (var y = 0; y < my; y++)
+			{
+				for (var x = 0; x < mx; x++)
+				{
+					var index = y * mx + x;
+					
+					if(index >= tiles.Count)
+					{
+						break;
+					}
+					
+					graphics.DrawImage(tiles[index].Image, new Rectangle(x * t, y * t, t, t), new Rectangle(0, 0, t, t), GraphicsUnit.Pixel);
+				}
+			}
+
+			tileImage.Save("map01-tileset.png", ImageFormat.Png);
 		}
 		
 		static void stand()
