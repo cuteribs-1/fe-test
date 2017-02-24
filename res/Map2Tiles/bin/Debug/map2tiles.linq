@@ -7,8 +7,7 @@
   <Namespace>System.Security.Cryptography</Namespace>
 </Query>
 
-
-		class Tile
+class Tile
 		{
 			public string Key { get; set; }
 			public int Index { get; set; }
@@ -25,8 +24,8 @@ static void Main(string[] args)
 		{
 			var md5 = SHA1.Create();
 			var converter = new ImageConverter();
-
 			var img = Image.FromFile("map01.png");
+			var tileSize = new Size(img.Size.Width / t, img.Size.Height / t);
 			var tiles = new List<Tile>();
 			Bitmap bmp;
 			Graphics graphics;
@@ -34,21 +33,14 @@ static void Main(string[] args)
 			byte[] bytes;
 			Point position;
 			int n = 0;
-
-			using (var sw = new StreamWriter("map01-tileset.txt"))
+			
+			using (var sw = new StreamWriter("map01-tileset.csv"))
 			{
-				for (var y = 0; y < img.Size.Height / t; y++)
+				for (var y = 0; y < tileSize.Height; y++)
 				{
-					for (var x = 0; x < img.Size.Width / t; x++)
+					for (var x = 0; x < tileSize.Width; x++)
 					{
 						bmp = new Bitmap(t, t);
-						
-						if(x == 0 && y > 0)
-						{
-							sw.WriteLine();
-						}
-						
-						sw.Write(string.Format("0x{0:x4},", n));
 
 						using (graphics = Graphics.FromImage(bmp))
 						{
@@ -57,20 +49,32 @@ static void Main(string[] args)
 
 						bytes = converter.ConvertTo(bmp, typeof(byte[])) as byte[];
 						key = BitConverter.ToString(md5.ComputeHash(bytes.ToArray()));
-
-						if (tiles.Any(p => p.Key == key))
+						
+						if(x > 0 && x < tileSize.Width)
 						{
-							continue;
+							sw.Write(',');
 						}
-
-						position = new Point(x * t, y * t);
-						tiles.Add(new Tile { Key = key, Position = position, Image = bmp });
-
-						n++;
+						else if(x == 0 && y > 0)
+						{
+							sw.WriteLine();
+						}
+						
+						var index = tiles.FindIndex(p => p.Key == key);
+						
+						if(index == -1)
+						{
+							tiles.Add(new Tile { Key = key, Position = new Point(x * t, y * t), Image = bmp });
+							sw.Write(n);
+							n++;
+						}
+						else
+						{
+							sw.Write(index);
+						}
 					}
 				}
 			}
-
+			
 			var mx = (int)Math.Ceiling(Math.Sqrt(tiles.Count));
 			var my = (int)Math.Ceiling(tiles.Count / (double)mx);
 			var tileImage = new Bitmap(t * mx, t * my);

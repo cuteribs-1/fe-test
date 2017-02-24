@@ -5,39 +5,42 @@
 	<title>fe test1</title>
 </head>
 
-<body style="background-color: #000000;">
+<body style="">
+	<div id="gameboard"></div>
 	<script type="text/javascript" src="phaser.min.js"></script>
 	<script type="text/javascript">
 		window.onload = function () {
-			var game = new Phaser.Game(800, 600, 
-				Phaser.AUTO, 
-				'', 
-				{ preload: preload, create: create, update: update },
+			var game = new Phaser.Game(800, 600,
+				Phaser.AUTO,
+				'gameboard', {
+					preload: preload,
+					create: create,
+					update: update
+				},
 				true,
 				false
 			);
+
 			var mspf = 1000 / 60;
 			var map, player1;
 
 			function preload() {
 				// game.load.image('logo', 'assets/img/GameIntroScreen.png');
-				game.load.tilemap('mapData01', 'assets/img/map01.json', null, Phaser.Tilemap.TILED_JSON)
+				game.load.tilemap('mapData01', 'assets/img/map01-tileset.csv', null, Phaser.Tilemap.CSV)
 				game.load.image('mapTiles01', 'assets/img/map01-tileset.png');
 				game.load.spritesheet('actor', 'assets/img/Act01.png', 16, 16);
 			}
 
 			function create() {
-				game.scale.pageAlignHorizontally = true;
-				game.scale.pageAlignVertically = true;
-				game.scale.refresh();
+				game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+				//game.scale.pageAlignHorizontally = true;
+				//game.scale.pageAlignVertically = true;
 
-				var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-				logo.anchor.setTo(0.5, 0.5);
-
-				map = game.add.tilemap('mapData01', 16, 16, 21, 25);
+				map = game.add.tilemap('mapData01', 8, 8, 46, 42);
 				map.addTilesetImage('map01', 'mapTiles01');
 
-				var layer = map.createLayer('layer-map');
+				layer = map.createLayer(0);
+				//layer.resizeWorld();
 
 				//player1 = game.add.sprite(0, 0, 'actor');
 				//player1.animations.add('1', [9, 10, 11, 10], 4, true);
