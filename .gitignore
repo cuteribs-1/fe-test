@@ -9,3 +9,6 @@ res/Map2Tiles/bin/Debug/map01-tileset.txt
 *.pdb
 res/Map2Tiles/obj/Debug/Map2Tiles.exe
 *.suo
+*.bmp
+res/fe5/zsnes/zsnesw.cfg
+res/fe5/zsnes/zsnesw.cfg
