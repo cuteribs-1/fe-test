@@ -1,12 +1,21 @@
 var scale = 3;
 var mspf = 1000 / 60;
-var tileSize = { w: 16, h: 16 };
-var cameraSize = { w: tileSize.w * 16, h: tileSize.h * 15 };
-var spriteOffset = { x: 8, y: 8 };
+var tileSize = {
+	w: 16,
+	h: 16
+};
+var cameraSize = {
+	w: tileSize.w * 16,
+	h: tileSize.h * 15
+};
+var spriteOffset = {
+	x: 8,
+	y: 8
+};
 var game, map, mapLayer, keys, cursor, player1;
 
 var createGame = function () {
-	game = new Phaser.Game(cameraSize.w * scale, cameraSize.w * scale,
+	game = new Phaser.Game(cameraSize.w * scale, cameraSize.h * scale,
 		Phaser.AUTO,
 		'', {
 			preload: preload,
@@ -83,8 +92,14 @@ var updateCursor = function () {
 	var mouse = game.input.activePointer;
 
 	var cursorArea = {
-		x: { min: tileSize.w * scale, max: cameraSize.w * scale - tileSize.w * scale - 1 },
-		y: { min: tileSize.h * scale, max: cameraSize.h * scale - tileSize.h * scale - 1 }
+		x: {
+			min: tileSize.w * scale,
+			max: cameraSize.w * scale - tileSize.w * scale - 1
+		},
+		y: {
+			min: tileSize.h * scale,
+			max: cameraSize.h * scale - tileSize.h * scale - 1
+		}
 	}
 
 	if (mouse.x >= cursorArea.x.min && mouse.x <= cursorArea.x.max) {
@@ -96,31 +111,34 @@ var updateCursor = function () {
 	}
 
 	// keyboard control
-	var cursorPos = { 
+	var cursorPos = {
 		x: cursor.x - spriteOffset.x * scale + game.camera.x,
 		y: cursor.y - spriteOffset.y * scale + game.camera.y
 	};
-	
+
 	var speed = 4 * scale;
 
 	if (keys.up.isDown && cursorPos.y > tileSize * scale) {
-		game.camera.y -= speed;
-	} else if (keys.down.isDown && cursorPos.y < cameraSize.h * scale - tileSize.h * scale -1) {
-		game.camera.y += speed;
+		cursor.y = game.camera.y + cursorPos.y - tileSize.h * scale;
+		//game.camera.y -= speed;
+	} else if (keys.down.isDown && cursorPos.y < cameraSize.h * scale - tileSize.h * scale - 1) {
+		cursor.y = game.camera.y + cursorPos.y + tileSize.h * scale;
+		//game.camera.y += speed;
 	}
 
 	if (keys.left.isDown && cursorPos.x > tileSize * scale) {
-		game.camera.x -= speed;
+		cursor.x = game.camera.x + cursorPos.x + tileSize.w * scale;
+		//game.camera.x -= speed;
 	} else if (keys.right.isDown && cameraSize.w * scale - tileSize.w * scale) {
-		game.camera.x += speed;
+		cursor.x = game.camera.x + cursorPos.x - tileSize.w * scale;
+		//game.camera.x += speed;
 	}
 
 	cursor.animations.play('cursor');
 };
 
 var updateCamera = function () {
-	
+
 };
 
-var updateDebugInfo = function () {
-};
+var updateDebugInfo = function () {};
