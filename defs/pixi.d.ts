@@ -2,1854 +2,1854 @@
 
 declare module PIXI {
 
-    export var game: Phaser.Game;
-    export var WEBGL_RENDERER: number;
-    export var CANVAS_RENDERER: number;
-    export var VERSION: string;
+	export var game: Phaser.Game;
+	export var WEBGL_RENDERER: number;
+	export var CANVAS_RENDERER: number;
+	export var VERSION: string;
 
-    export enum blendModes {
+	export enum blendModes {
 
-        NORMAL,
-        ADD,
-        MULTIPLY,
-        SCREEN,
-        OVERLAY,
-        DARKEN,
-        LIGHTEN,
-        COLOR_DODGE,
-        COLOR_BURN,
-        HARD_LIGHT,
-        SOFT_LIGHT,
-        DIFFERENCE,
-        EXCLUSION,
-        HUE,
-        SATURATION,
-        COLOR,
-        LUMINOSITY
+		NORMAL,
+		ADD,
+		MULTIPLY,
+		SCREEN,
+		OVERLAY,
+		DARKEN,
+		LIGHTEN,
+		COLOR_DODGE,
+		COLOR_BURN,
+		HARD_LIGHT,
+		SOFT_LIGHT,
+		DIFFERENCE,
+		EXCLUSION,
+		HUE,
+		SATURATION,
+		COLOR,
+		LUMINOSITY
 
-    }
+	}
 
-    export enum scaleModes {
+	export enum scaleModes {
 
-        DEFAULT,
-        LINEAR,
-        NEAREST
+		DEFAULT,
+		LINEAR,
+		NEAREST
 
-    }
+	}
 
-    export var defaultRenderOptions: PixiRendererOptions;
+	export var defaultRenderOptions: PixiRendererOptions;
 
-    export var INTERACTION_REQUENCY: number;
-    export var AUTO_PREVENT_DEFAULT: boolean;
+	export var INTERACTION_REQUENCY: number;
+	export var AUTO_PREVENT_DEFAULT: boolean;
 
-    export var PI_2: number;
-    export var RAD_TO_DEG: number;
-    export var DEG_TO_RAD: number;
+	export var PI_2: number;
+	export var RAD_TO_DEG: number;
+	export var DEG_TO_RAD: number;
 
-    export var RETINA_PREFIX: string;
-    export var identityMatrix: Matrix;
-    export var glContexts: WebGLRenderingContext[];
-    export var instances: any[];
+	export var RETINA_PREFIX: string;
+	export var identityMatrix: Matrix;
+	export var glContexts: WebGLRenderingContext[];
+	export var instances: any[];
 
-    export var TextureSilentFail: boolean;
-    export var BitmapText: { fonts: {} };
+	export var TextureSilentFail: boolean;
+	export var BitmapText: { fonts: {} };
 
-    export function isPowerOfTwo(width: number, height: number): boolean;
+	export function isPowerOfTwo(width: number, height: number): boolean;
 
-    export function rgb2hex(rgb: number[]): string;
-    export function hex2rgb(hex: string): number[];
+	export function rgb2hex(rgb: number[]): string;
+	export function hex2rgb(hex: string): number[];
 
-    export function autoDetectRenderer(width?: number, height?: number, options?: PixiRendererOptions): PixiRenderer;
-    export function autoDetectRecommendedRenderer(width?: number, height?: number, options?: PixiRendererOptions): PixiRenderer;
+	export function autoDetectRenderer(width?: number, height?: number, options?: PixiRendererOptions): PixiRenderer;
+	export function autoDetectRecommendedRenderer(width?: number, height?: number, options?: PixiRendererOptions): PixiRenderer;
 
-    export function canUseNewCanvasBlendModes(): boolean;
-    export function getNextPowerOfTwo(value: number): number;
+	export function canUseNewCanvasBlendModes(): boolean;
+	export function getNextPowerOfTwo(value: number): number;
 
-    export function AjaxRequest(): XMLHttpRequest;
+	export function AjaxRequest(): XMLHttpRequest;
 
-    export function CompileFragmentShader(gl: WebGLRenderingContext, shaderSrc: string[]): any;
-    export function CompileProgram(gl: WebGLRenderingContext, vertexSrc: string[], fragmentSrc: string[]): any;
+	export function CompileFragmentShader(gl: WebGLRenderingContext, shaderSrc: string[]): any;
+	export function CompileProgram(gl: WebGLRenderingContext, vertexSrc: string[], fragmentSrc: string[]): any;
 
 
-    export interface IEventCallback {
-        (e?: IEvent): void;
-    }
+	export interface IEventCallback {
+		(e?: IEvent): void;
+	}
 
-    export interface IEvent {
-        type: string;
-        content: any;
-    }
+	export interface IEvent {
+		type: string;
+		content: any;
+	}
 
-    export interface HitArea {
-        contains(x: number, y: number): boolean;
-    }
+	export interface HitArea {
+		contains(x: number, y: number): boolean;
+	}
 
-    export interface IInteractionDataCallback {
-        (interactionData: InteractionData): void;
-    }
+	export interface IInteractionDataCallback {
+		(interactionData: InteractionData): void;
+	}
 
-    export interface PixiRenderer {
+	export interface PixiRenderer {
 
-        autoResize: boolean;
-        clearBeforeRender: boolean;
-        height: number;
-        resolution: number;
-        transparent: boolean;
-        type: number;
-        view: HTMLCanvasElement;
-        width: number;
+		autoResize: boolean;
+		clearBeforeRender: boolean;
+		height: number;
+		resolution: number;
+		transparent: boolean;
+		type: number;
+		view: HTMLCanvasElement;
+		width: number;
 
-        destroy(): void;
-        render(stage: DisplayObjectContainer): void;
-        resize(width: number, height: number): void;
+		destroy(): void;
+		render(stage: DisplayObjectContainer): void;
+		resize(width: number, height: number): void;
 
-    }
+	}
 
-    export interface PixiRendererOptions {
+	export interface PixiRendererOptions {
 
-        autoResize?: boolean;
-        antialias?: boolean;
-        clearBeforeRender?: boolean;
-        preserveDrawingBuffer?: boolean;
-        resolution?: number;
-        transparent?: boolean;
-        view?: HTMLCanvasElement;
+		autoResize?: boolean;
+		antialias?: boolean;
+		clearBeforeRender?: boolean;
+		preserveDrawingBuffer?: boolean;
+		resolution?: number;
+		transparent?: boolean;
+		view?: HTMLCanvasElement;
 
-    }
+	}
 
-    export interface BitmapTextStyle {
+	export interface BitmapTextStyle {
 
-        font?: string;
-        align?: string;
-        tint?: string;
+		font?: string;
+		align?: string;
+		tint?: string;
 
-    }
+	}
 
-    export interface TextStyle {
+	export interface TextStyle {
 
-        align?: string;
-        dropShadow?: boolean;
-        dropShadowColor?: string;
-        dropShadowAngle?: number;
-        dropShadowDistance?: number;
-        fill?: string;
-        font?: string;
-        lineJoin?: string;
-        stroke?: string;
-        strokeThickness?: number;
-        wordWrap?: boolean;
-        wordWrapWidth?: number;
+		align?: string;
+		dropShadow?: boolean;
+		dropShadowColor?: string;
+		dropShadowAngle?: number;
+		dropShadowDistance?: number;
+		fill?: string;
+		font?: string;
+		lineJoin?: string;
+		stroke?: string;
+		strokeThickness?: number;
+		wordWrap?: boolean;
+		wordWrapWidth?: number;
 
-    }
+	}
 
-    export interface Loader {
+	export interface Loader {
 
-        load(): void;
+		load(): void;
 
-    }
+	}
 
-    export interface MaskData {
+	export interface MaskData {
 
-        alpha: number;
-        worldTransform: number[];
+		alpha: number;
+		worldTransform: number[];
 
-    }
+	}
 
-    export interface RenderSession {
+	export interface RenderSession {
 
-        context: CanvasRenderingContext2D;
-        maskManager: CanvasMaskManager;
-        scaleMode: scaleModes;
-        smoothProperty: string;
-        roundPixels: boolean;
+		context: CanvasRenderingContext2D;
+		maskManager: CanvasMaskManager;
+		scaleMode: scaleModes;
+		smoothProperty: string;
+		roundPixels: boolean;
 
-    }
+	}
 
-    export interface ShaderAttribute {
-        // TODO: Find signature of shader attributes
-    }
+	export interface ShaderAttribute {
+		// TODO: Find signature of shader attributes
+	}
 
-    export interface FilterBlock {
+	export interface FilterBlock {
 
-        visible: boolean;
-        renderable: boolean;
+		visible: boolean;
+		renderable: boolean;
 
-    }
+	}
 
-    export class AbstractFilter {
+	export class AbstractFilter {
 
-        constructor(fragmentSrc: string | string[], uniforms: any);
+		constructor(fragmentSrc: string | string[], uniforms: any);
 
-        dirty: boolean;
-        padding: number;
-        uniforms: any;
-        fragmentSrc: string | string[];
+		dirty: boolean;
+		padding: number;
+		uniforms: any;
+		fragmentSrc: string | string[];
 
-        apply(frameBuffer: WebGLFramebuffer): void;
-        syncUniforms(): void;
+		apply(frameBuffer: WebGLFramebuffer): void;
+		syncUniforms(): void;
 
-    }
+	}
 
-    export class AlphaMaskFilter extends AbstractFilter {
+	export class AlphaMaskFilter extends AbstractFilter {
 
-        constructor(texture: Texture);
+		constructor(texture: Texture);
 
-        map: Texture;
+		map: Texture;
 
-        onTextureLoaded(): void;
+		onTextureLoaded(): void;
 
-    }
+	}
 
-    export class AsciiFilter extends AbstractFilter {
+	export class AsciiFilter extends AbstractFilter {
 
-        size: number;
+		size: number;
 
-    }
+	}
 
-    export class AssetLoader implements Mixin {
+	export class AssetLoader implements Mixin {
 
-        assetURLs: string[];
-        crossorigin: boolean;
-        loadersByType: { [key: string]: Loader };
+		assetURLs: string[];
+		crossorigin: boolean;
+		loadersByType: { [key: string]: Loader };
 
-        constructor(assetURLs: string[], crossorigin: boolean);
+		constructor(assetURLs: string[], crossorigin: boolean);
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-        load(): void;
+		load(): void;
 
 
-    }
+	}
 
-    export class AtlasLoader implements Mixin {
+	export class AtlasLoader implements Mixin {
 
-        url: string;
-        baseUrl: string;
-        crossorigin: boolean;
-        loaded: boolean;
+		url: string;
+		baseUrl: string;
+		crossorigin: boolean;
+		loaded: boolean;
 
-        constructor(url: string, crossorigin: boolean);
+		constructor(url: string, crossorigin: boolean);
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-        load(): void;
+		load(): void;
 
-    }
+	}
 
-    export class BaseTexture implements Mixin {
+	export class BaseTexture implements Mixin {
 
-        static fromCanvas(canvas: HTMLCanvasElement, scaleMode?: scaleModes): BaseTexture;
+		static fromCanvas(canvas: HTMLCanvasElement, scaleMode?: scaleModes): BaseTexture;
 
-        constructor(source: HTMLImageElement, scaleMode: scaleModes);
-        constructor(source: HTMLCanvasElement, scaleMode: scaleModes);
+		constructor(source: HTMLImageElement, scaleMode: scaleModes);
+		constructor(source: HTMLCanvasElement, scaleMode: scaleModes);
 
-        height: number;
-        hasLoaded: boolean;
-        mipmap: boolean;
-        premultipliedAlpha: boolean;
-        resolution: number;
-        scaleMode: scaleModes;
-        skipRender: boolean;
-        source: HTMLImageElement;
-        width: number;
+		height: number;
+		hasLoaded: boolean;
+		mipmap: boolean;
+		premultipliedAlpha: boolean;
+		resolution: number;
+		scaleMode: scaleModes;
+		skipRender: boolean;
+		source: HTMLImageElement;
+		width: number;
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
-        forceLoaded(width: number, height: number): void;
-        destroy(): void;
-        dirty(): void;
-        unloadFromGPU(): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
+		forceLoaded(width: number, height: number): void;
+		destroy(): void;
+		dirty(): void;
+		unloadFromGPU(): void;
 
-    }
+	}
 
-    export class BitmapFontLoader implements Mixin {
+	export class BitmapFontLoader implements Mixin {
 
-        constructor(url: string, crossorigin: boolean);
+		constructor(url: string, crossorigin: boolean);
 
-        baseUrl: string;
-        crossorigin: boolean;
-        texture: Texture;
-        url: string;
+		baseUrl: string;
+		crossorigin: boolean;
+		texture: Texture;
+		url: string;
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-        load(): void;
+		load(): void;
 
-    }
+	}
 
-    export class BlurFilter extends AbstractFilter {
+	export class BlurFilter extends AbstractFilter {
 
-        blur: number;
-        blurX: number;
-        blurY: number;
+		blur: number;
+		blurX: number;
+		blurY: number;
 
-    }
+	}
 
-    export class BlurXFilter extends AbstractFilter {
+	export class BlurXFilter extends AbstractFilter {
 
-        blur: number;
+		blur: number;
 
-    }
+	}
 
-    export class BlurYFilter extends AbstractFilter {
+	export class BlurYFilter extends AbstractFilter {
 
-        blur: number;
+		blur: number;
 
-    }
+	}
 
-    export class CanvasBuffer {
+	export class CanvasBuffer {
 
-        constructor(width: number, height: number);
+		constructor(width: number, height: number);
 
-        canvas: HTMLCanvasElement;
-        context: CanvasRenderingContext2D;
-        height: number;
-        width: number;
+		canvas: HTMLCanvasElement;
+		context: CanvasRenderingContext2D;
+		height: number;
+		width: number;
 
-        destroy(): void;
-        clear(): void;
-        resize(width: number, height: number): void;
+		destroy(): void;
+		clear(): void;
+		resize(width: number, height: number): void;
 
-    }
+	}
 
-    export class CanvasPool {
+	export class CanvasPool {
 
-        static create(parent: HTMLElement, width?: number, height?: number): HTMLCanvasElement;
-        static getFirst(): HTMLCanvasElement;
-        static remove(parent: HTMLElement): void;
-        static removeByCanvas(canvas: HTMLCanvasElement): HTMLCanvasElement;
-        static getTotal(): number;
-        static getFree(): number;
+		static create(parent: HTMLElement, width?: number, height?: number): HTMLCanvasElement;
+		static getFirst(): HTMLCanvasElement;
+		static remove(parent: HTMLElement): void;
+		static removeByCanvas(canvas: HTMLCanvasElement): HTMLCanvasElement;
+		static getTotal(): number;
+		static getFree(): number;
 
-    }
+	}
 
-    export class CanvasMaskManager {
+	export class CanvasMaskManager {
 
-        pushMask(maskData: MaskData, renderSession: RenderSession): void;
-        popMask(renderSession: RenderSession): void;
+		pushMask(maskData: MaskData, renderSession: RenderSession): void;
+		popMask(renderSession: RenderSession): void;
 
-    }
+	}
 
-    export class CanvasRenderer implements PixiRenderer {
+	export class CanvasRenderer implements PixiRenderer {
 
-        constructor(game: Phaser.Game);
+		constructor(game: Phaser.Game);
 
-        game: Phaser.Game;
-        type: number;
-        resolution: number;
-        clearBeforeRender: boolean;
-        transparent: boolean;
-        autoResize: boolean;
-        width: number;
-        height: number;
-        view: HTMLCanvasElement;
-        context: CanvasRenderingContext2D;
-        refresh: boolean;
-        count: number;
-        maskManager: CanvasMaskManager;
-        renderSession: RenderSession;
+		game: Phaser.Game;
+		type: number;
+		resolution: number;
+		clearBeforeRender: boolean;
+		transparent: boolean;
+		autoResize: boolean;
+		width: number;
+		height: number;
+		view: HTMLCanvasElement;
+		context: CanvasRenderingContext2D;
+		refresh: boolean;
+		count: number;
+		maskManager: CanvasMaskManager;
+		renderSession: RenderSession;
 
-        render(stage: DisplayObjectContainer): void;
-        resize(width: number, height: number): void;
-        destroy(removeView?: boolean): void;
+		render(stage: DisplayObjectContainer): void;
+		resize(width: number, height: number): void;
+		destroy(removeView?: boolean): void;
 
-    }
+	}
 
-    export class CanvasTinter {
+	export class CanvasTinter {
 
-        static getTintedTexture(sprite: Sprite, color: number): HTMLCanvasElement;
-        static tintWithMultiply(texture: Texture, color: number, canvas: HTMLCanvasElement): void;
-        static tintWithOverlay(texture: Texture, color: number, canvas: HTMLCanvasElement): void;
-        static tintWithPerPixel(texture: Texture, color: number, canvas: HTMLCanvasElement): void;
+		static getTintedTexture(sprite: Sprite, color: number): HTMLCanvasElement;
+		static tintWithMultiply(texture: Texture, color: number, canvas: HTMLCanvasElement): void;
+		static tintWithOverlay(texture: Texture, color: number, canvas: HTMLCanvasElement): void;
+		static tintWithPerPixel(texture: Texture, color: number, canvas: HTMLCanvasElement): void;
 
-        static canUseMultiply: boolean;
-        static tintMethod: any;
+		static canUseMultiply: boolean;
+		static tintMethod: any;
 
-    }
+	}
 
-    export class Circle implements HitArea {
+	export class Circle implements HitArea {
 
-        constructor(x: number, y: number, radius: number);
+		constructor(x: number, y: number, radius: number);
 
-        x: number;
-        y: number;
-        radius: number;
+		x: number;
+		y: number;
+		radius: number;
 
-        clone(): Circle;
-        contains(x: number, y: number): boolean;
-        getBounds(): Rectangle;
+		clone(): Circle;
+		contains(x: number, y: number): boolean;
+		getBounds(): Rectangle;
 
-    }
+	}
 
-    export class ColorMatrixFilter extends AbstractFilter {
+	export class ColorMatrixFilter extends AbstractFilter {
 
-        constructor();
+		constructor();
 
-        matrix: number[];
+		matrix: number[];
 
-    }
+	}
 
-    export class ColorStepFilter extends AbstractFilter {
+	export class ColorStepFilter extends AbstractFilter {
 
-        step: number;
+		step: number;
 
-    }
+	}
 
-    export class ConvolutionFilter extends AbstractFilter {
+	export class ConvolutionFilter extends AbstractFilter {
 
-        constructor(matrix: number[], width: number, height: number);
+		constructor(matrix: number[], width: number, height: number);
 
-        matrix: Matrix;
-        width: number;
-        height: number;
+		matrix: Matrix;
+		width: number;
+		height: number;
 
-    }
+	}
 
-    export class CrossHatchFilter extends AbstractFilter {
+	export class CrossHatchFilter extends AbstractFilter {
 
-        blur: number;
+		blur: number;
 
-    }
+	}
 
-    export class DisplacementFilter extends AbstractFilter {
+	export class DisplacementFilter extends AbstractFilter {
 
-        constructor(texture: Texture);
+		constructor(texture: Texture);
 
-        map: Texture;
-        offset: Point;
-        scale: Point;
+		map: Texture;
+		offset: Point;
+		scale: Point;
 
-    }
+	}
 
-    export class DotScreenFilter extends AbstractFilter {
+	export class DotScreenFilter extends AbstractFilter {
 
-        angle: number;
-        scale: Point;
+		angle: number;
+		scale: Point;
 
-    }
+	}
 
-    export class DisplayObject {
+	export class DisplayObject {
 
-        alpha: number;
-        buttonMode: boolean;
-        cacheAsBitmap: boolean;
-        defaultCursor: string;
-        filterArea: Rectangle;
-        filters: AbstractFilter[];
-        hitArea: HitArea;
-        interactive: boolean;
-        mask: Graphics;
-        parent: DisplayObjectContainer;
-        pivot: Point;
-        position: Point;
-        renderable: boolean;
-        rotation: number;
-        scale: Point;
-        stage: DisplayObjectContainer;
-        visible: boolean;
-        worldAlpha: number;
-        worldPosition: Point;
-        worldScale: Point;
-        worldTransform: Matrix;
-        worldRotation: number;
-        worldVisible: boolean;
-        x: number;
-        y: number;
+		alpha: number;
+		buttonMode: boolean;
+		cacheAsBitmap: boolean;
+		defaultCursor: string;
+		filterArea: Rectangle;
+		filters: AbstractFilter[];
+		hitArea: HitArea;
+		interactive: boolean;
+		mask: Graphics;
+		parent: DisplayObjectContainer;
+		pivot: Point;
+		position: Point;
+		renderable: boolean;
+		rotation: number;
+		scale: Point;
+		stage: DisplayObjectContainer;
+		visible: boolean;
+		worldAlpha: number;
+		worldPosition: Point;
+		worldScale: Point;
+		worldTransform: Matrix;
+		worldRotation: number;
+		worldVisible: boolean;
+		x: number;
+		y: number;
 
-        click(e: InteractionData): void;
-        displayObjectUpdateTransform(parent?: DisplayObjectContainer): void;
-        generateTexture(resolution?: number, scaleMode?: number, renderer?: PixiRenderer | number): RenderTexture;
-        mousedown(e: InteractionData): void;
-        mouseout(e: InteractionData): void;
-        mouseover(e: InteractionData): void;
-        mouseup(e: InteractionData): void;
-        mousemove(e: InteractionData): void;
-        mouseupoutside(e: InteractionData): void;
-        rightclick(e: InteractionData): void;
-        rightdown(e: InteractionData): void;
-        rightup(e: InteractionData): void;
-        rightupoutside(e: InteractionData): void;
-        setStageReference(stage: DisplayObjectContainer): void;
-        tap(e: InteractionData): void;
-        toGlobal(position: Point): Point;
-        toLocal(position: Point, from: DisplayObject): Point;
-        touchend(e: InteractionData): void;
-        touchendoutside(e: InteractionData): void;
-        touchstart(e: InteractionData): void;
-        touchmove(e: InteractionData): void;
-        updateTransform(parent?: DisplayObjectContainer): void;
+		click(e: InteractionData): void;
+		displayObjectUpdateTransform(parent?: DisplayObjectContainer): void;
+		generateTexture(resolution?: number, scaleMode?: number, renderer?: PixiRenderer | number): RenderTexture;
+		mousedown(e: InteractionData): void;
+		mouseout(e: InteractionData): void;
+		mouseover(e: InteractionData): void;
+		mouseup(e: InteractionData): void;
+		mousemove(e: InteractionData): void;
+		mouseupoutside(e: InteractionData): void;
+		rightclick(e: InteractionData): void;
+		rightdown(e: InteractionData): void;
+		rightup(e: InteractionData): void;
+		rightupoutside(e: InteractionData): void;
+		setStageReference(stage: DisplayObjectContainer): void;
+		tap(e: InteractionData): void;
+		toGlobal(position: Point): Point;
+		toLocal(position: Point, from: DisplayObject): Point;
+		touchend(e: InteractionData): void;
+		touchendoutside(e: InteractionData): void;
+		touchstart(e: InteractionData): void;
+		touchmove(e: InteractionData): void;
+		updateTransform(parent?: DisplayObjectContainer): void;
 
-    }
+	}
 
-    export class DisplayObjectContainer extends DisplayObject {
+	export class DisplayObjectContainer extends DisplayObject {
 
-        constructor();
+		constructor();
 
-        children: DisplayObject[];
-        height: number;
-        width: number;
-        ignoreChildInput: boolean;
+		children: DisplayObject[];
+		height: number;
+		width: number;
+		ignoreChildInput: boolean;
 
-        addChild(child: DisplayObject): DisplayObject;
-        addChildAt(child: DisplayObject, index: number): DisplayObject;
-        getBounds(targetCoordinateSpace?: DisplayObject | Matrix): Rectangle;
-        getChildAt(index: number): DisplayObject;
-        getChildIndex(child: DisplayObject): number;
-        getLocalBounds(): Rectangle;
-        removeChild(child: DisplayObject): DisplayObject;
-        removeChildAt(index: number): DisplayObject;
-        removeChildren(beginIndex?: number, endIndex?: number): DisplayObject[];
-        removeStageReference(): void;
-        setChildIndex(child: DisplayObject, index: number): void;
-        swapChildren(child: DisplayObject, child2: DisplayObject): void;
-        contains(child: DisplayObject): boolean;
+		addChild(child: DisplayObject): DisplayObject;
+		addChildAt(child: DisplayObject, index: number): DisplayObject;
+		getBounds(targetCoordinateSpace?: DisplayObject | Matrix): Rectangle;
+		getChildAt(index: number): DisplayObject;
+		getChildIndex(child: DisplayObject): number;
+		getLocalBounds(): Rectangle;
+		removeChild(child: DisplayObject): DisplayObject;
+		removeChildAt(index: number): DisplayObject;
+		removeChildren(beginIndex?: number, endIndex?: number): DisplayObject[];
+		removeStageReference(): void;
+		setChildIndex(child: DisplayObject, index: number): void;
+		swapChildren(child: DisplayObject, child2: DisplayObject): void;
+		contains(child: DisplayObject): boolean;
 
-    }
+	}
 
-    export class Ellipse implements HitArea {
+	export class Ellipse implements HitArea {
 
-        constructor(x: number, y: number, width: number, height: number);
+		constructor(x: number, y: number, width: number, height: number);
 
-        x: number;
-        y: number;
-        width: number;
-        height: number;
+		x: number;
+		y: number;
+		width: number;
+		height: number;
 
-        clone(): Ellipse;
-        contains(x: number, y: number): boolean;
-        getBounds(): Rectangle;
+		clone(): Ellipse;
+		contains(x: number, y: number): boolean;
+		getBounds(): Rectangle;
 
-    }
+	}
 
-    export class Event {
+	export class Event {
 
-        constructor(target: any, name: string, data: any);
+		constructor(target: any, name: string, data: any);
 
-        target: any;
-        type: string;
-        data: any;
-        timeStamp: number;
+		target: any;
+		type: string;
+		data: any;
+		timeStamp: number;
 
-        stopPropagation(): void;
-        preventDefault(): void;
-        stopImmediatePropagation(): void;
+		stopPropagation(): void;
+		preventDefault(): void;
+		stopImmediatePropagation(): void;
 
-    }
+	}
 
-    export class EventTarget {
+	export class EventTarget {
 
-        static mixin(obj: any): void;
+		static mixin(obj: any): void;
 
-    }
+	}
 
-    export class FilterTexture {
+	export class FilterTexture {
 
-        constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: scaleModes);
+		constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: scaleModes);
 
-        fragmentSrc: string[];
-        frameBuffer: WebGLFramebuffer;
-        gl: WebGLRenderingContext;
-        program: WebGLProgram;
-        scaleMode: number;
-        texture: WebGLTexture;
+		fragmentSrc: string[];
+		frameBuffer: WebGLFramebuffer;
+		gl: WebGLRenderingContext;
+		program: WebGLProgram;
+		scaleMode: number;
+		texture: WebGLTexture;
 
-        clear(): void;
-        resize(width: number, height: number): void;
-        destroy(): void;
+		clear(): void;
+		resize(width: number, height: number): void;
+		destroy(): void;
 
-    }
+	}
 
-    export class GraphicsData {
+	export class GraphicsData {
 
-        constructor(lineWidth?: number, lineColor?: number, lineAlpha?: number, fillColor?: number, fillAlpha?: number, fill?: boolean, shape?: any);
+		constructor(lineWidth?: number, lineColor?: number, lineAlpha?: number, fillColor?: number, fillAlpha?: number, fill?: boolean, shape?: any);
 
-        lineWidth: number;
-        lineColor: number;
-        lineAlpha: number;
-        fillColor: number;
-        fillAlpha: number;
-        fill: boolean;
-        shape: any;
-        type: number;
+		lineWidth: number;
+		lineColor: number;
+		lineAlpha: number;
+		fillColor: number;
+		fillAlpha: number;
+		fill: boolean;
+		shape: any;
+		type: number;
 
-    }
+	}
 
-    export class Graphics extends DisplayObjectContainer {
+	export class Graphics extends DisplayObjectContainer {
 
-        static POLY: number;
-        static RECT: number;
-        static CIRC: number;
-        static ELIP: number;
-        static RREC: number;
+		static POLY: number;
+		static RECT: number;
+		static CIRC: number;
+		static ELIP: number;
+		static RREC: number;
 
-        blendMode: number;
-        boundsPadding: number;
-        fillAlpha: number;
-        isMask: boolean;
-        lineWidth: number;
-        lineColor: number;
-        tint: number;
-        worldAlpha: number;
+		blendMode: number;
+		boundsPadding: number;
+		fillAlpha: number;
+		isMask: boolean;
+		lineWidth: number;
+		lineColor: number;
+		tint: number;
+		worldAlpha: number;
 
-        arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): Graphics;
-        arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): Graphics;
-        beginFill(color?: number, alpha?: number): Graphics;
-        bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): Graphics;
-        clear(): Graphics;
-        destroyCachedSprite(): void;
-        drawCircle(x: number, y: number, diameter: number): Graphics;
-        drawEllipse(x: number, y: number, width: number, height: number): Graphics;
-        drawPolygon(...path: any[]): Graphics;
-        drawRect(x: number, y: number, width: number, height: number): Graphics;
-        drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): Graphics;
-        drawShape(shape: Circle): GraphicsData;
-        drawShape(shape: Rectangle): GraphicsData;
-        drawShape(shape: Ellipse): GraphicsData;
-        drawShape(shape: Polygon): GraphicsData;
-        endFill(): Graphics;
-        generateTexture(resolution?: number, scaleMode?: number, padding?: number): RenderTexture;
-        lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
-        lineTo(x: number, y: number): Graphics;
-        moveTo(x: number, y: number): Graphics;
-        quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): Graphics;
+		arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): Graphics;
+		arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): Graphics;
+		beginFill(color?: number, alpha?: number): Graphics;
+		bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): Graphics;
+		clear(): Graphics;
+		destroyCachedSprite(): void;
+		drawCircle(x: number, y: number, diameter: number): Graphics;
+		drawEllipse(x: number, y: number, width: number, height: number): Graphics;
+		drawPolygon(...path: any[]): Graphics;
+		drawRect(x: number, y: number, width: number, height: number): Graphics;
+		drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): Graphics;
+		drawShape(shape: Circle): GraphicsData;
+		drawShape(shape: Rectangle): GraphicsData;
+		drawShape(shape: Ellipse): GraphicsData;
+		drawShape(shape: Polygon): GraphicsData;
+		endFill(): Graphics;
+		generateTexture(resolution?: number, scaleMode?: number, padding?: number): RenderTexture;
+		lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
+		lineTo(x: number, y: number): Graphics;
+		moveTo(x: number, y: number): Graphics;
+		quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): Graphics;
 
-    }
+	}
 
-    export class GrayFilter extends AbstractFilter {
+	export class GrayFilter extends AbstractFilter {
 
-        gray: number;
+		gray: number;
 
-    }
+	}
 
-    export class ImageLoader implements Mixin {
+	export class ImageLoader implements Mixin {
 
-        constructor(url: string, crossorigin?: boolean);
+		constructor(url: string, crossorigin?: boolean);
 
-        texture: Texture;
+		texture: Texture;
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-        load(): void;
-        loadFramedSpriteSheet(frameWidth: number, frameHeight: number, textureName: string): void;
+		load(): void;
+		loadFramedSpriteSheet(frameWidth: number, frameHeight: number, textureName: string): void;
 
-    }
+	}
 
-    export class InteractionData {
+	export class InteractionData {
 
-        global: Point;
-        target: Sprite;
-        originalEvent: Event;
+		global: Point;
+		target: Sprite;
+		originalEvent: Event;
 
-        getLocalPosition(displayObject: DisplayObject, point?: Point, globalPos?: Point): Point;
+		getLocalPosition(displayObject: DisplayObject, point?: Point, globalPos?: Point): Point;
 
-    }
+	}
 
-    export class InteractionManager {
+	export class InteractionManager {
 
-        currentCursorStyle: string;
-        last: number;
-        mouse: InteractionData;
-        mouseOut: boolean;
-        mouseoverEnabled: boolean;
-        onMouseMove: Function;
-        onMouseDown: Function;
-        onMouseOut: Function;
-        onMouseUp: Function;
-        onTouchStart: Function;
-        onTouchEnd: Function;
-        onTouchMove: Function;
-        pool: InteractionData[];
-        resolution: number;
-        stage: DisplayObjectContainer;
-        touches: { [id: string]: InteractionData };
+		currentCursorStyle: string;
+		last: number;
+		mouse: InteractionData;
+		mouseOut: boolean;
+		mouseoverEnabled: boolean;
+		onMouseMove: Function;
+		onMouseDown: Function;
+		onMouseOut: Function;
+		onMouseUp: Function;
+		onTouchStart: Function;
+		onTouchEnd: Function;
+		onTouchMove: Function;
+		pool: InteractionData[];
+		resolution: number;
+		stage: DisplayObjectContainer;
+		touches: { [id: string]: InteractionData };
 
-        constructor(stage: DisplayObjectContainer);
-    }
+		constructor(stage: DisplayObjectContainer);
+	}
 
-    export class InvertFilter extends AbstractFilter {
+	export class InvertFilter extends AbstractFilter {
 
-        invert: number;
+		invert: number;
 
-    }
+	}
 
-    export class JsonLoader implements Mixin {
+	export class JsonLoader implements Mixin {
 
-        constructor(url: string, crossorigin?: boolean);
+		constructor(url: string, crossorigin?: boolean);
 
-        baseUrl: string;
-        crossorigin: boolean;
-        loaded: boolean;
-        url: string;
+		baseUrl: string;
+		crossorigin: boolean;
+		loaded: boolean;
+		url: string;
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-        load(): void;
+		load(): void;
 
-    }
+	}
 
-    export class Matrix {
+	export class Matrix {
 
-        a: number;
-        b: number;
-        c: number;
-        d: number;
-        tx: number;
-        ty: number;
+		a: number;
+		b: number;
+		c: number;
+		d: number;
+		tx: number;
+		ty: number;
 
-        append(matrix: Matrix): Matrix;
-        apply(pos: Point, newPos: Point): Point;
-        applyInverse(pos: Point, newPos: Point): Point;
-        determineMatrixArrayType(): number[];
-        identity(): Matrix;
-        rotate(angle: number): Matrix;
-        fromArray(array: number[]): void;
-        translate(x: number, y: number): Matrix;
-        toArray(transpose: boolean): number[];
-        scale(x: number, y: number): Matrix;
+		append(matrix: Matrix): Matrix;
+		apply(pos: Point, newPos: Point): Point;
+		applyInverse(pos: Point, newPos: Point): Point;
+		determineMatrixArrayType(): number[];
+		identity(): Matrix;
+		rotate(angle: number): Matrix;
+		fromArray(array: number[]): void;
+		translate(x: number, y: number): Matrix;
+		toArray(transpose: boolean): number[];
+		scale(x: number, y: number): Matrix;
 
-    }
+	}
 
-    export interface Mixin {
+	export interface Mixin {
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-    }
+	}
 
-    export class NoiseFilter extends AbstractFilter {
+	export class NoiseFilter extends AbstractFilter {
 
-        noise: number;
+		noise: number;
 
-    }
+	}
 
-    export class NormalMapFilter extends AbstractFilter {
+	export class NormalMapFilter extends AbstractFilter {
 
-        map: Texture;
-        offset: Point;
-        scale: Point;
+		map: Texture;
+		offset: Point;
+		scale: Point;
 
-    }
+	}
 
-    export class PixelateFilter extends AbstractFilter {
+	export class PixelateFilter extends AbstractFilter {
 
-        size: number;
+		size: number;
 
-    }
+	}
 
-    export interface IPixiShader {
+	export interface IPixiShader {
 
-        fragmentSrc: string[];
-        gl: WebGLRenderingContext;
-        program: WebGLProgram;
-        vertexSrc: string[];
+		fragmentSrc: string[];
+		gl: WebGLRenderingContext;
+		program: WebGLProgram;
+		vertexSrc: string[];
 
-        destroy(): void;
-        init(): void;
+		destroy(): void;
+		init(): void;
 
-    }
+	}
 
-    export class PixiShader implements IPixiShader {
+	export class PixiShader implements IPixiShader {
 
-        constructor(gl: WebGLRenderingContext);
+		constructor(gl: WebGLRenderingContext);
 
-        attributes: ShaderAttribute[];
-        defaultVertexSrc: string[];
-        dirty: boolean;
-        firstRun: boolean;
-        textureCount: number;
-        fragmentSrc: string[];
-        gl: WebGLRenderingContext;
-        program: WebGLProgram;
-        vertexSrc: string[];
+		attributes: ShaderAttribute[];
+		defaultVertexSrc: string[];
+		dirty: boolean;
+		firstRun: boolean;
+		textureCount: number;
+		fragmentSrc: string[];
+		gl: WebGLRenderingContext;
+		program: WebGLProgram;
+		vertexSrc: string[];
 
-        initSampler2D(): void;
-        initUniforms(): void;
-        syncUniforms(): void;
+		initSampler2D(): void;
+		initUniforms(): void;
+		syncUniforms(): void;
 
-        destroy(): void;
-        init(): void;
+		destroy(): void;
+		init(): void;
 
-    }
+	}
 
-    export class PixiFastShader implements IPixiShader {
+	export class PixiFastShader implements IPixiShader {
 
-        constructor(gl: WebGLRenderingContext);
+		constructor(gl: WebGLRenderingContext);
 
-        textureCount: number;
-        fragmentSrc: string[];
-        gl: WebGLRenderingContext;
-        program: WebGLProgram;
-        vertexSrc: string[];
+		textureCount: number;
+		fragmentSrc: string[];
+		gl: WebGLRenderingContext;
+		program: WebGLProgram;
+		vertexSrc: string[];
 
-        destroy(): void;
-        init(): void;
+		destroy(): void;
+		init(): void;
 
-    }
+	}
 
-    export class PrimitiveShader implements IPixiShader {
+	export class PrimitiveShader implements IPixiShader {
 
-        constructor(gl: WebGLRenderingContext);
-        fragmentSrc: string[];
-        gl: WebGLRenderingContext;
-        program: WebGLProgram;
-        vertexSrc: string[];
+		constructor(gl: WebGLRenderingContext);
+		fragmentSrc: string[];
+		gl: WebGLRenderingContext;
+		program: WebGLProgram;
+		vertexSrc: string[];
 
-        destroy(): void;
-        init(): void;
+		destroy(): void;
+		init(): void;
 
-    }
+	}
 
-    export class ComplexPrimitiveShader implements IPixiShader {
+	export class ComplexPrimitiveShader implements IPixiShader {
 
-        constructor(gl: WebGLRenderingContext);
-        fragmentSrc: string[];
-        gl: WebGLRenderingContext;
-        program: WebGLProgram;
-        vertexSrc: string[];
+		constructor(gl: WebGLRenderingContext);
+		fragmentSrc: string[];
+		gl: WebGLRenderingContext;
+		program: WebGLProgram;
+		vertexSrc: string[];
 
-        destroy(): void;
-        init(): void;
+		destroy(): void;
+		init(): void;
 
-    }
+	}
 
-    export class StripShader implements IPixiShader {
+	export class StripShader implements IPixiShader {
 
-        constructor(gl: WebGLRenderingContext);
-        fragmentSrc: string[];
-        gl: WebGLRenderingContext;
-        program: WebGLProgram;
-        vertexSrc: string[];
+		constructor(gl: WebGLRenderingContext);
+		fragmentSrc: string[];
+		gl: WebGLRenderingContext;
+		program: WebGLProgram;
+		vertexSrc: string[];
 
-        destroy(): void;
-        init(): void;
+		destroy(): void;
+		init(): void;
 
-    }
+	}
 
-    export class Point {
+	export class Point {
 
-        constructor(x?: number, y?: number);
+		constructor(x?: number, y?: number);
 
-        x: number;
-        y: number;
+		x: number;
+		y: number;
 
-        clone(): Point;
-        set(x: number, y: number): void;
+		clone(): Point;
+		set(x: number, y: number): void;
 
-    }
+	}
 
-    export class Polygon implements HitArea {
+	export class Polygon implements HitArea {
 
-        constructor(points: Point[]);
-        constructor(points: number[]);
-        constructor(...points: Point[]);
-        constructor(...points: number[]);
+		constructor(points: Point[]);
+		constructor(points: number[]);
+		constructor(...points: Point[]);
+		constructor(...points: number[]);
 
-        points: any[];
+		points: any[];
 
-        clone(): Polygon;
-        contains(x: number, y: number): boolean;
+		clone(): Polygon;
+		contains(x: number, y: number): boolean;
 
-    }
+	}
 
-    export class Rectangle implements HitArea {
+	export class Rectangle implements HitArea {
 
-        constructor(x?: number, y?: number, width?: number, height?: number);
+		constructor(x?: number, y?: number, width?: number, height?: number);
 
-        x: number;
-        y: number;
-        width: number;
-        height: number;
+		x: number;
+		y: number;
+		width: number;
+		height: number;
 
-        clone(): Rectangle;
-        contains(x: number, y: number): boolean;
+		clone(): Rectangle;
+		contains(x: number, y: number): boolean;
 
-    }
+	}
 
-    export class RGBSplitFilter extends AbstractFilter {
+	export class RGBSplitFilter extends AbstractFilter {
 
-        red: Point;
-        green: Point;
-        blue: Point;
+		red: Point;
+		green: Point;
+		blue: Point;
 
-    }
+	}
 
-    export class Rope extends Strip {
+	export class Rope extends Strip {
 
-        points: Point[];
-        vertices: number[];
+		points: Point[];
+		vertices: number[];
 
-        constructor(texture: Texture, points: Point[]);
+		constructor(texture: Texture, points: Point[]);
 
-        refresh(): void;
-        setTexture(texture: Texture): void;
+		refresh(): void;
+		setTexture(texture: Texture): void;
 
-    }
+	}
 
-    export class RoundedRectangle implements HitArea {
+	export class RoundedRectangle implements HitArea {
 
-        constructor(x?: number, y?: number, width?: number, height?: number, radius?: number);
+		constructor(x?: number, y?: number, width?: number, height?: number, radius?: number);
 
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-        radius: number;
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+		radius: number;
 
-        clone(): RoundedRectangle;
-        contains(x: number, y: number): boolean;
+		clone(): RoundedRectangle;
+		contains(x: number, y: number): boolean;
 
-    }
+	}
 
-    export class SepiaFilter extends AbstractFilter {
+	export class SepiaFilter extends AbstractFilter {
 
-        sepia: number;
+		sepia: number;
 
-    }
+	}
 
-    export class SmartBlurFilter extends AbstractFilter {
+	export class SmartBlurFilter extends AbstractFilter {
 
-        blur: number;
+		blur: number;
 
-    }
+	}
 
-    export class SpineLoader implements Mixin {
+	export class SpineLoader implements Mixin {
 
-        url: string;
-        crossorigin: boolean;
-        loaded: boolean;
+		url: string;
+		crossorigin: boolean;
+		loaded: boolean;
 
-        constructor(url: string, crossOrigin: boolean);
+		constructor(url: string, crossOrigin: boolean);
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-        load(): void;
+		load(): void;
 
-    }
+	}
 
-    export class SpineTextureLoader {
+	export class SpineTextureLoader {
 
-        constructor(basePath: string, crossorigin: boolean);
+		constructor(basePath: string, crossorigin: boolean);
 
-        load(page: AtlasPage, file: string): void;
-        unload(texture: BaseTexture): void;
+		load(page: AtlasPage, file: string): void;
+		unload(texture: BaseTexture): void;
 
-    }
+	}
 
-    export class Sprite extends DisplayObjectContainer {
+	export class Sprite extends DisplayObjectContainer {
 
-        constructor(texture: Texture);
+		constructor(texture: Texture);
 
-        anchor: Point;
-        blendMode: blendModes;
-        exists: boolean;
-        shader: IPixiShader;
-        texture: Texture;
-        tint: number;
+		anchor: Point;
+		blendMode: blendModes;
+		exists: boolean;
+		shader: IPixiShader;
+		texture: Texture;
+		tint: number;
 
-        setTexture(texture: Texture, destroyBase?: boolean): void;
+		setTexture(texture: Texture, destroyBase?: boolean): void;
 
-    }
+	}
 
-    export class SpriteBatch extends DisplayObjectContainer {
+	export class SpriteBatch extends DisplayObjectContainer {
 
-        constructor(texture?: Texture);
+		constructor(texture?: Texture);
 
-        ready: boolean;
-        textureThing: Texture;
+		ready: boolean;
+		textureThing: Texture;
 
-        initWebGL(gl: WebGLRenderingContext): void;
+		initWebGL(gl: WebGLRenderingContext): void;
 
-    }
+	}
 
-    export class SpriteSheetLoader implements Mixin {
+	export class SpriteSheetLoader implements Mixin {
 
-        constructor(url: string, crossorigin?: boolean);
+		constructor(url: string, crossorigin?: boolean);
 
-        baseUrl: string;
-        crossorigin: boolean;
-        frames: any;
-        texture: Texture;
-        url: string;
+		baseUrl: string;
+		crossorigin: boolean;
+		frames: any;
+		texture: Texture;
+		url: string;
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-        load(): void;
+		load(): void;
 
-    }
+	}
 
-    export class Strip extends DisplayObjectContainer {
+	export class Strip extends DisplayObjectContainer {
 
-        static DrawModes: {
+		static DrawModes: {
 
-            TRIANGLE_STRIP: number;
-            TRIANGLES: number;
+			TRIANGLE_STRIP: number;
+			TRIANGLES: number;
 
-        };
+		};
 
-        constructor(texture: Texture);
+		constructor(texture: Texture);
 
-        blendMode: number;
-        colors: number[];
-        dirty: boolean;
-        indices: number[];
-        canvasPadding: number;
-        texture: Texture;
-        uvs: number[];
-        vertices: number[];
+		blendMode: number;
+		colors: number[];
+		dirty: boolean;
+		indices: number[];
+		canvasPadding: number;
+		texture: Texture;
+		uvs: number[];
+		vertices: number[];
 
-        getBounds(matrix?: Matrix): Rectangle;
+		getBounds(matrix?: Matrix): Rectangle;
 
-    }
+	}
 
-    export class Texture implements Mixin {
+	export class Texture implements Mixin {
 
-        static emptyTexture: Texture;
+		static emptyTexture: Texture;
 
-        static fromCanvas(canvas: HTMLCanvasElement, scaleMode?: scaleModes): Texture;
+		static fromCanvas(canvas: HTMLCanvasElement, scaleMode?: scaleModes): Texture;
 
-        constructor(baseTexture: BaseTexture, frame?: Rectangle, crop?: Rectangle, trim?: Rectangle);
+		constructor(baseTexture: BaseTexture, frame?: Rectangle, crop?: Rectangle, trim?: Rectangle);
 
-        baseTexture: BaseTexture;
-        crop: Rectangle;
-        frame: Rectangle;
-        height: number;
-        noFrame: boolean;
-        requiresUpdate: boolean;
-        trim: Point;
-        width: number;
-        scope: any;
-        valid: boolean;
+		baseTexture: BaseTexture;
+		crop: Rectangle;
+		frame: Rectangle;
+		height: number;
+		noFrame: boolean;
+		requiresUpdate: boolean;
+		trim: Point;
+		width: number;
+		scope: any;
+		valid: boolean;
 
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
+		listeners(eventName: string): Function[];
+		emit(eventName: string, data?: any): boolean;
+		dispatchEvent(eventName: string, data?: any): boolean;
+		on(eventName: string, fn: Function): Function;
+		addEventListener(eventName: string, fn: Function): Function;
+		once(eventName: string, fn: Function): Function;
+		off(eventName: string, fn: Function): Function;
+		removeAllEventListeners(eventName: string): void;
 
-        destroy(destroyBase: boolean): void;
-        setFrame(frame: Rectangle): void;
+		destroy(destroyBase: boolean): void;
+		setFrame(frame: Rectangle): void;
 
-    }
+	}
 
-    export class TilingSprite extends Sprite {
+	export class TilingSprite extends Sprite {
 
-        constructor(texture: Texture, width: number, height: number);
+		constructor(texture: Texture, width: number, height: number);
 
-        canvasBuffer: PIXI.CanvasBuffer;
-        blendMode: number;
-        refreshTexture: boolean;
-        texture: Texture;
-        textureDebug: boolean;
-        tint: number;
-        tilePosition: Point;
-        tilePattern: PIXI.Texture;
-        tileScale: Point;
-        tileScaleOffset: Point;
+		canvasBuffer: PIXI.CanvasBuffer;
+		blendMode: number;
+		refreshTexture: boolean;
+		texture: Texture;
+		textureDebug: boolean;
+		tint: number;
+		tilePosition: Point;
+		tilePattern: PIXI.Texture;
+		tileScale: Point;
+		tileScaleOffset: Point;
 
-        destroy(): void;
-        generateTilingTexture(forcePowerOfTwo?: boolean): void;
-        setTexture(texture: Texture): void;
+		destroy(): void;
+		generateTilingTexture(forcePowerOfTwo?: boolean): void;
+		setTexture(texture: Texture): void;
 
-    }
+	}
 
-    export class TiltShiftFilter extends AbstractFilter {
+	export class TiltShiftFilter extends AbstractFilter {
 
-        blur: number;
-        gradientBlur: number;
-        start: number;
-        end: number;
+		blur: number;
+		gradientBlur: number;
+		start: number;
+		end: number;
 
-    }
+	}
 
-    export class TiltShiftXFilter extends AbstractFilter {
+	export class TiltShiftXFilter extends AbstractFilter {
 
-        blur: number;
-        gradientBlur: number;
-        start: number;
-        end: number;
+		blur: number;
+		gradientBlur: number;
+		start: number;
+		end: number;
 
-        updateDelta(): void;
+		updateDelta(): void;
 
-    }
+	}
 
-    export class TiltShiftYFilter extends AbstractFilter {
+	export class TiltShiftYFilter extends AbstractFilter {
 
-        blur: number;
-        gradientBlur: number;
-        start: number;
-        end: number;
+		blur: number;
+		gradientBlur: number;
+		start: number;
+		end: number;
 
-        updateDelta(): void;
+		updateDelta(): void;
 
-    }
+	}
 
-    export class TwistFilter extends AbstractFilter {
+	export class TwistFilter extends AbstractFilter {
 
-        angle: number;
-        offset: Point;
-        radius: number;
+		angle: number;
+		offset: Point;
+		radius: number;
 
-    }
+	}
 
-    export class VideoTexture extends BaseTexture {
+	export class VideoTexture extends BaseTexture {
 
-        static baseTextureFromVideo(video: HTMLVideoElement, scaleMode: number): BaseTexture;
-        static textureFromVideo(video: HTMLVideoElement, scaleMode: number): Texture;
-        static fromUrl(videoSrc: string, scaleMode?: number, autoPlay?: boolean, type?: string, loop?: boolean): Texture;
+		static baseTextureFromVideo(video: HTMLVideoElement, scaleMode: number): BaseTexture;
+		static textureFromVideo(video: HTMLVideoElement, scaleMode: number): Texture;
+		static fromUrl(videoSrc: string, scaleMode?: number, autoPlay?: boolean, type?: string, loop?: boolean): Texture;
 
-        controls: boolean;
-        autoUpdate: boolean;
-        type: string;
+		controls: boolean;
+		autoUpdate: boolean;
+		type: string;
 
-        changeSource(src: string, type: string, loop: boolean): void;
-        play(): void;
-        stop(): void;
+		changeSource(src: string, type: string, loop: boolean): void;
+		play(): void;
+		stop(): void;
 
-        destroy(): void;
-        updateBound(): void;
-        onPlayStart: () => void;
-        onPlayStop: () => void;
-        onCanPlay: (event: any) => void;
+		destroy(): void;
+		updateBound(): void;
+		onPlayStart: () => void;
+		onPlayStop: () => void;
+		onCanPlay: (event: any) => void;
 
-    }
+	}
 
-    export class WebGLBlendModeManager {
+	export class WebGLBlendModeManager {
 
-        currentBlendMode: number;
+		currentBlendMode: number;
 
-        destroy(): void;
-        setBlendMode(blendMode: number): boolean;
-        setContext(gl: WebGLRenderingContext): void;
+		destroy(): void;
+		setBlendMode(blendMode: number): boolean;
+		setContext(gl: WebGLRenderingContext): void;
 
-    }
+	}
 
-    export class WebGLFastSpriteBatch {
+	export class WebGLFastSpriteBatch {
 
-        constructor(gl: CanvasRenderingContext2D);
+		constructor(gl: CanvasRenderingContext2D);
 
-        currentBatchSize: number;
-        currentBaseTexture: BaseTexture;
-        currentBlendMode: number;
-        renderSession: RenderSession;
-        drawing: boolean;
-        indexBuffer: any;
-        indices: number[];
-        lastIndexCount: number;
-        matrix: Matrix;
-        maxSize: number;
-        shader: IPixiShader;
-        size: number;
-        vertexBuffer: any;
-        vertices: number[];
-        vertSize: number;
+		currentBatchSize: number;
+		currentBaseTexture: BaseTexture;
+		currentBlendMode: number;
+		renderSession: RenderSession;
+		drawing: boolean;
+		indexBuffer: any;
+		indices: number[];
+		lastIndexCount: number;
+		matrix: Matrix;
+		maxSize: number;
+		shader: IPixiShader;
+		size: number;
+		vertexBuffer: any;
+		vertices: number[];
+		vertSize: number;
 
-        end(): void;
-        begin(spriteBatch: SpriteBatch, renderSession: RenderSession): void;
-        destroy(removeView?: boolean): void;
-        flush(): void;
-        render(spriteBatch: SpriteBatch): void;
-        renderSprite(sprite: Sprite): void;
-        setContext(gl: WebGLRenderingContext): void;
-        start(): void;
-        stop(): void;
+		end(): void;
+		begin(spriteBatch: SpriteBatch, renderSession: RenderSession): void;
+		destroy(removeView?: boolean): void;
+		flush(): void;
+		render(spriteBatch: SpriteBatch): void;
+		renderSprite(sprite: Sprite): void;
+		setContext(gl: WebGLRenderingContext): void;
+		start(): void;
+		stop(): void;
 
-    }
+	}
 
-    export class WebGLFilterManager {
+	export class WebGLFilterManager {
 
-        filterStack: AbstractFilter[];
-        transparent: boolean;
-        offsetX: number;
-        offsetY: number;
+		filterStack: AbstractFilter[];
+		transparent: boolean;
+		offsetX: number;
+		offsetY: number;
 
-        applyFilterPass(filter: AbstractFilter, filterArea: Texture, width: number, height: number): void;
-        begin(renderSession: RenderSession, buffer: ArrayBuffer): void;
-        destroy(): void;
-        initShaderBuffers(): void;
-        popFilter(): void;
-        pushFilter(filterBlock: FilterBlock): void;
-        setContext(gl: WebGLRenderingContext): void;
+		applyFilterPass(filter: AbstractFilter, filterArea: Texture, width: number, height: number): void;
+		begin(renderSession: RenderSession, buffer: ArrayBuffer): void;
+		destroy(): void;
+		initShaderBuffers(): void;
+		popFilter(): void;
+		pushFilter(filterBlock: FilterBlock): void;
+		setContext(gl: WebGLRenderingContext): void;
 
-    }
+	}
 
-    export class WebGLGraphics {
+	export class WebGLGraphics {
 
-        static graphicsDataPool: any[];
+		static graphicsDataPool: any[];
 
-        static renderGraphics(graphics: Graphics, renderRession: RenderSession): void;
-        static updateGraphics(graphics: Graphics, gl: WebGLRenderingContext): void;
-        static switchMode(webGL: WebGLRenderingContext, type: number): any;
-        static buildRectangle(graphicsData: GraphicsData, webGLData: any): void;
-        static buildRoundedRectangle(graphicsData: GraphicsData, webGLData: any): void;
-        static quadraticBezierCurve(fromX: number, fromY: number, cpX: number, cpY: number, toX: number, toY: number): number[];
-        static buildCircle(graphicsData: GraphicsData, webGLData: any): void;
-        static buildLine(graphicsData: GraphicsData, webGLData: any): void;
-        static buildComplexPoly(graphicsData: GraphicsData, webGLData: any): void;
-        static buildPoly(graphicsData: GraphicsData, webGLData: any): boolean;
+		static renderGraphics(graphics: Graphics, renderRession: RenderSession): void;
+		static updateGraphics(graphics: Graphics, gl: WebGLRenderingContext): void;
+		static switchMode(webGL: WebGLRenderingContext, type: number): any;
+		static buildRectangle(graphicsData: GraphicsData, webGLData: any): void;
+		static buildRoundedRectangle(graphicsData: GraphicsData, webGLData: any): void;
+		static quadraticBezierCurve(fromX: number, fromY: number, cpX: number, cpY: number, toX: number, toY: number): number[];
+		static buildCircle(graphicsData: GraphicsData, webGLData: any): void;
+		static buildLine(graphicsData: GraphicsData, webGLData: any): void;
+		static buildComplexPoly(graphicsData: GraphicsData, webGLData: any): void;
+		static buildPoly(graphicsData: GraphicsData, webGLData: any): boolean;
 
-        reset(): void;
-        upload(): void;
+		reset(): void;
+		upload(): void;
 
-    }
+	}
 
-    export class WebGLGraphicsData {
+	export class WebGLGraphicsData {
 
-        constructor(gl: WebGLRenderingContext);
+		constructor(gl: WebGLRenderingContext);
 
-        gl: WebGLRenderingContext;
-        glPoints: any[];
-        color: number[];
-        points: any[];
-        indices: any[];
-        buffer: WebGLBuffer;
-        indexBuffer: WebGLBuffer;
-        mode: number;
-        alpha: number;
-        dirty: boolean;
+		gl: WebGLRenderingContext;
+		glPoints: any[];
+		color: number[];
+		points: any[];
+		indices: any[];
+		buffer: WebGLBuffer;
+		indexBuffer: WebGLBuffer;
+		mode: number;
+		alpha: number;
+		dirty: boolean;
 
-        reset(): void;
-        upload(): void;
+		reset(): void;
+		upload(): void;
 
-    }
+	}
 
-    export class WebGLMaskManager {
+	export class WebGLMaskManager {
 
-        destroy(): void;
-        popMask(renderSession: RenderSession): void;
-        pushMask(maskData: any[], renderSession: RenderSession): void;
-        setContext(gl: WebGLRenderingContext): void;
+		destroy(): void;
+		popMask(renderSession: RenderSession): void;
+		pushMask(maskData: any[], renderSession: RenderSession): void;
+		setContext(gl: WebGLRenderingContext): void;
 
-    }
+	}
 
-    export class WebGLRenderer implements PixiRenderer {
+	export class WebGLRenderer implements PixiRenderer {
 
-        static createWebGLTexture(texture: Texture, gl: WebGLRenderingContext): void;
+		static createWebGLTexture(texture: Texture, gl: WebGLRenderingContext): void;
 
-        constructor(game: Phaser.Game);
+		constructor(game: Phaser.Game);
 
-        game: Phaser.Game;
-        type: number;
-        resolution: number;
-        transparent: boolean;
-        autoResize: boolean;
-        preserveDrawingBuffer: boolean;
-        clearBeforeRender: boolean;
-        width: number;
-        height: number;
-        view: HTMLCanvasElement;
-        projection: Point;
-        offset: Point;
-        shaderManager: WebGLShaderManager;
-        spriteBatch: WebGLSpriteBatch;
-        maskManager: WebGLMaskManager;
-        filterManager: WebGLFilterManager;
-        stencilManager: WebGLStencilManager;
-        blendModeManager: WebGLBlendModeManager;
-        renderSession: RenderSession;
+		game: Phaser.Game;
+		type: number;
+		resolution: number;
+		transparent: boolean;
+		autoResize: boolean;
+		preserveDrawingBuffer: boolean;
+		clearBeforeRender: boolean;
+		width: number;
+		height: number;
+		view: HTMLCanvasElement;
+		projection: Point;
+		offset: Point;
+		shaderManager: WebGLShaderManager;
+		spriteBatch: WebGLSpriteBatch;
+		maskManager: WebGLMaskManager;
+		filterManager: WebGLFilterManager;
+		stencilManager: WebGLStencilManager;
+		blendModeManager: WebGLBlendModeManager;
+		renderSession: RenderSession;
 
-        initContext(): void;
-        render(stage: DisplayObjectContainer): void;
-        renderDisplayObject(displayObject: DisplayObject, projection: Point, buffer: WebGLBuffer): void;
-        resize(width: number, height: number): void;
-        updateTexture(texture: Texture): void;
-        destroy(): void;
-        mapBlendModes(): void;
+		initContext(): void;
+		render(stage: DisplayObjectContainer): void;
+		renderDisplayObject(displayObject: DisplayObject, projection: Point, buffer: WebGLBuffer): void;
+		resize(width: number, height: number): void;
+		updateTexture(texture: Texture): void;
+		destroy(): void;
+		mapBlendModes(): void;
 
-    }
+	}
 
-    export class WebGLShaderManager {
+	export class WebGLShaderManager {
 
-        maxAttibs: number;
-        attribState: any[];
-        stack: any[];
-        tempAttribState: any[];
+		maxAttibs: number;
+		attribState: any[];
+		stack: any[];
+		tempAttribState: any[];
 
-        destroy(): void;
-        setAttribs(attribs: ShaderAttribute[]): void;
-        setContext(gl: WebGLRenderingContext): void;
-        setShader(shader: IPixiShader): boolean;
+		destroy(): void;
+		setAttribs(attribs: ShaderAttribute[]): void;
+		setContext(gl: WebGLRenderingContext): void;
+		setShader(shader: IPixiShader): boolean;
 
-    }
+	}
 
-    export class WebGLStencilManager {
+	export class WebGLStencilManager {
 
-        stencilStack: any[];
-        reverse: boolean;
-        count: number;
+		stencilStack: any[];
+		reverse: boolean;
+		count: number;
 
-        bindGraphics(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
-        destroy(): void;
-        popStencil(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
-        pushStencil(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
-        setContext(gl: WebGLRenderingContext): void;
+		bindGraphics(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
+		destroy(): void;
+		popStencil(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
+		pushStencil(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
+		setContext(gl: WebGLRenderingContext): void;
 
-    }
+	}
 
-    export class WebGLSpriteBatch {
+	export class WebGLSpriteBatch {
 
-        blendModes: number[];
-        colors: number[];
-        currentBatchSize: number;
-        currentBaseTexture: Texture;
-        defaultShader: AbstractFilter;
-        dirty: boolean;
-        drawing: boolean;
-        indices: number[];
-        lastIndexCount: number;
-        positions: number[];
-        textures: Texture[];
-        shaders: IPixiShader[];
-        size: number;
-        sprites: any[];
-        vertices: number[];
-        vertSize: number;
+		blendModes: number[];
+		colors: number[];
+		currentBatchSize: number;
+		currentBaseTexture: Texture;
+		defaultShader: AbstractFilter;
+		dirty: boolean;
+		drawing: boolean;
+		indices: number[];
+		lastIndexCount: number;
+		positions: number[];
+		textures: Texture[];
+		shaders: IPixiShader[];
+		size: number;
+		sprites: any[];
+		vertices: number[];
+		vertSize: number;
 
-        begin(renderSession: RenderSession): void;
-        destroy(): void;
-        end(): void;
-        flush(shader?: IPixiShader): void;
-        render(sprite: Sprite): void;
-        renderBatch(texture: Texture, size: number, startIndex: number): void;
-        renderTilingSprite(sprite: TilingSprite): void;
-        setBlendMode(blendMode: blendModes): void;
-        setContext(gl: WebGLRenderingContext): void;
-        start(): void;
-        stop(): void;
+		begin(renderSession: RenderSession): void;
+		destroy(): void;
+		end(): void;
+		flush(shader?: IPixiShader): void;
+		render(sprite: Sprite): void;
+		renderBatch(texture: Texture, size: number, startIndex: number): void;
+		renderTilingSprite(sprite: TilingSprite): void;
+		setBlendMode(blendMode: blendModes): void;
+		setContext(gl: WebGLRenderingContext): void;
+		start(): void;
+		stop(): void;
 
-    }
+	}
 
-    export class RenderTexture extends Texture {
+	export class RenderTexture extends Texture {
 
-        constructor(width?: number, height?: number, renderer?: PixiRenderer, scaleMode?: scaleModes, resolution?: number);
+		constructor(width?: number, height?: number, renderer?: PixiRenderer, scaleMode?: scaleModes, resolution?: number);
 
-        frame: Rectangle;
-        baseTexture: BaseTexture;
-        renderer: PixiRenderer;
-        resolution: number;
-        valid: boolean;
+		frame: Rectangle;
+		baseTexture: BaseTexture;
+		renderer: PixiRenderer;
+		resolution: number;
+		valid: boolean;
 
-        clear(): void;
-        getBase64(): string;
-        getCanvas(): HTMLCanvasElement;
-        getImage(): HTMLImageElement;
-        resize(width: number, height: number, updateBase: boolean): void;
-        render(displayObject: DisplayObject, matrix?: Matrix, clear?: boolean): void;
+		clear(): void;
+		getBase64(): string;
+		getCanvas(): HTMLCanvasElement;
+		getImage(): HTMLImageElement;
+		resize(width: number, height: number, updateBase: boolean): void;
+		render(displayObject: DisplayObject, matrix?: Matrix, clear?: boolean): void;
 
-    }
+	}
 
-    // SPINE
+	// SPINE
 
-    export class BoneData {
+	export class BoneData {
 
-        constructor(name: string, parent?: any);
+		constructor(name: string, parent?: any);
 
-        name: string;
-        parent: any;
-        length: number;
-        x: number;
-        y: number;
-        rotation: number;
-        scaleX: number;
-        scaleY: number;
+		name: string;
+		parent: any;
+		length: number;
+		x: number;
+		y: number;
+		rotation: number;
+		scaleX: number;
+		scaleY: number;
 
-    }
+	}
 
-    export class SlotData {
+	export class SlotData {
 
-        constructor(name: string, boneData: BoneData);
+		constructor(name: string, boneData: BoneData);
 
-        name: string;
-        boneData: BoneData;
-        r: number;
-        g: number;
-        b: number;
-        a: number;
-        attachmentName: string;
+		name: string;
+		boneData: BoneData;
+		r: number;
+		g: number;
+		b: number;
+		a: number;
+		attachmentName: string;
 
-    }
+	}
 
-    export class Bone {
+	export class Bone {
 
-        constructor(boneData: BoneData, parent?: any);
+		constructor(boneData: BoneData, parent?: any);
 
-        data: BoneData;
-        parent: any;
-        yDown: boolean;
-        x: number;
-        y: number;
-        rotation: number;
-        scaleX: number;
-        scaleY: number;
-        worldRotation: number;
-        worldScaleX: number;
-        worldScaleY: number;
+		data: BoneData;
+		parent: any;
+		yDown: boolean;
+		x: number;
+		y: number;
+		rotation: number;
+		scaleX: number;
+		scaleY: number;
+		worldRotation: number;
+		worldScaleX: number;
+		worldScaleY: number;
 
-        updateWorldTransform(flipX: boolean, flip: boolean): void;
-        setToSetupPose(): void;
+		updateWorldTransform(flipX: boolean, flip: boolean): void;
+		setToSetupPose(): void;
 
-    }
+	}
 
-    export class Slot {
+	export class Slot {
 
-        constructor(slotData: SlotData, skeleton: Skeleton, bone: Bone);
+		constructor(slotData: SlotData, skeleton: Skeleton, bone: Bone);
 
-        data: SlotData;
-        skeleton: Skeleton;
-        bone: Bone;
-        r: number;
-        g: number;
-        b: number;
-        a: number;
-        attachment: RegionAttachment;
-        setAttachment(attachment: RegionAttachment): void;
-        setAttachmentTime(time: number): void;
-        getAttachmentTime(): number;
-        setToSetupPose(): void;
+		data: SlotData;
+		skeleton: Skeleton;
+		bone: Bone;
+		r: number;
+		g: number;
+		b: number;
+		a: number;
+		attachment: RegionAttachment;
+		setAttachment(attachment: RegionAttachment): void;
+		setAttachmentTime(time: number): void;
+		getAttachmentTime(): number;
+		setToSetupPose(): void;
 
-    }
+	}
 
-    export class Skin {
+	export class Skin {
 
-        constructor(name: string);
+		constructor(name: string);
 
-        name: string;
-        attachments: any;
+		name: string;
+		attachments: any;
 
-        addAttachment(slotIndex: number, name: string, attachment: RegionAttachment): void;
-        getAttachment(slotIndex: number, name: string): void;
+		addAttachment(slotIndex: number, name: string, attachment: RegionAttachment): void;
+		getAttachment(slotIndex: number, name: string): void;
 
-    }
+	}
 
-    export class Animation {
+	export class Animation {
 
-        constructor(name: string, timelines: ISpineTimeline[], duration: number);
+		constructor(name: string, timelines: ISpineTimeline[], duration: number);
 
-        name: string;
-        timelines: ISpineTimeline[];
-        duration: number;
-        apply(skeleton: Skeleton, time: number, loop: boolean): void;
-        min(skeleton: Skeleton, time: number, loop: boolean, alpha: number): void;
+		name: string;
+		timelines: ISpineTimeline[];
+		duration: number;
+		apply(skeleton: Skeleton, time: number, loop: boolean): void;
+		min(skeleton: Skeleton, time: number, loop: boolean, alpha: number): void;
 
-    }
+	}
 
-    export class Curves {
+	export class Curves {
 
-        constructor(frameCount: number);
+		constructor(frameCount: number);
 
-        curves: number[];
+		curves: number[];
 
-        setLinear(frameIndex: number): void;
-        setStepped(frameIndex: number): void;
-        setCurve(frameIndex: number, cx1: number, cy1: number, cx2: number, cy2: number): void;
-        getCurvePercent(frameIndex: number, percent: number): number;
+		setLinear(frameIndex: number): void;
+		setStepped(frameIndex: number): void;
+		setCurve(frameIndex: number, cx1: number, cy1: number, cx2: number, cy2: number): void;
+		getCurvePercent(frameIndex: number, percent: number): number;
 
-    }
+	}
 
-    export interface ISpineTimeline {
+	export interface ISpineTimeline {
 
-        curves: Curves;
-        frames: number[];
+		curves: Curves;
+		frames: number[];
 
-        getFrameCount(): number;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
+		getFrameCount(): number;
+		apply(skeleton: Skeleton, time: number, alpha: number): void;
 
-    }
+	}
 
-    export class RotateTimeline implements ISpineTimeline {
+	export class RotateTimeline implements ISpineTimeline {
 
-        constructor(frameCount: number);
+		constructor(frameCount: number);
 
-        curves: Curves;
-        frames: number[];
-        boneIndex: number;
+		curves: Curves;
+		frames: number[];
+		boneIndex: number;
 
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, angle: number): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
+		getFrameCount(): number;
+		setFrame(frameIndex: number, time: number, angle: number): void;
+		apply(skeleton: Skeleton, time: number, alpha: number): void;
 
-    }
+	}
 
-    export class TranslateTimeline implements ISpineTimeline {
+	export class TranslateTimeline implements ISpineTimeline {
 
-        constructor(frameCount: number);
+		constructor(frameCount: number);
 
-        curves: Curves;
-        frames: number[];
-        boneIndex: number;
+		curves: Curves;
+		frames: number[];
+		boneIndex: number;
 
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, x: number, y: number): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
+		getFrameCount(): number;
+		setFrame(frameIndex: number, time: number, x: number, y: number): void;
+		apply(skeleton: Skeleton, time: number, alpha: number): void;
 
-    }
+	}
 
-    export class ScaleTimeline implements ISpineTimeline {
+	export class ScaleTimeline implements ISpineTimeline {
 
-        constructor(frameCount: number);
+		constructor(frameCount: number);
 
-        curves: Curves;
-        frames: number[];
-        boneIndex: number;
+		curves: Curves;
+		frames: number[];
+		boneIndex: number;
 
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, x: number, y: number): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
+		getFrameCount(): number;
+		setFrame(frameIndex: number, time: number, x: number, y: number): void;
+		apply(skeleton: Skeleton, time: number, alpha: number): void;
 
-    }
+	}
 
-    export class ColorTimeline implements ISpineTimeline {
+	export class ColorTimeline implements ISpineTimeline {
 
-        constructor(frameCount: number);
+		constructor(frameCount: number);
 
-        curves: Curves;
-        frames: number[];
-        boneIndex: number;
+		curves: Curves;
+		frames: number[];
+		boneIndex: number;
 
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, r: number, g: number, b: number, a: number): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
+		getFrameCount(): number;
+		setFrame(frameIndex: number, time: number, r: number, g: number, b: number, a: number): void;
+		apply(skeleton: Skeleton, time: number, alpha: number): void;
 
-    }
+	}
 
-    export class AttachmentTimeline implements ISpineTimeline {
+	export class AttachmentTimeline implements ISpineTimeline {
 
-        constructor(frameCount: number);
+		constructor(frameCount: number);
 
-        curves: Curves;
-        frames: number[];
-        attachmentNames: string[];
-        slotIndex: number;
+		curves: Curves;
+		frames: number[];
+		attachmentNames: string[];
+		slotIndex: number;
 
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, attachmentName: string): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
+		getFrameCount(): number;
+		setFrame(frameIndex: number, time: number, attachmentName: string): void;
+		apply(skeleton: Skeleton, time: number, alpha: number): void;
 
-    }
+	}
 
-    export class SkeletonData {
+	export class SkeletonData {
 
-        bones: Bone[];
-        slots: Slot[];
-        skins: Skin[];
-        animations: Animation[];
-        defaultSkin: Skin;
+		bones: Bone[];
+		slots: Slot[];
+		skins: Skin[];
+		animations: Animation[];
+		defaultSkin: Skin;
 
-        findBone(boneName: string): Bone;
-        findBoneIndex(boneName: string): number;
-        findSlot(slotName: string): Slot;
-        findSlotIndex(slotName: string): number;
-        findSkin(skinName: string): Skin;
-        findAnimation(animationName: string): Animation;
+		findBone(boneName: string): Bone;
+		findBoneIndex(boneName: string): number;
+		findSlot(slotName: string): Slot;
+		findSlotIndex(slotName: string): number;
+		findSkin(skinName: string): Skin;
+		findAnimation(animationName: string): Animation;
 
-    }
+	}
 
-    export class Skeleton {
+	export class Skeleton {
 
-        constructor(skeletonData: SkeletonData);
+		constructor(skeletonData: SkeletonData);
 
-        data: SkeletonData;
-        bones: Bone[];
-        slots: Slot[];
-        drawOrder: any[];
-        x: number;
-        y: number;
-        skin: Skin;
-        r: number;
-        g: number;
-        b: number;
-        a: number;
-        time: number;
-        flipX: boolean;
-        flipY: boolean;
+		data: SkeletonData;
+		bones: Bone[];
+		slots: Slot[];
+		drawOrder: any[];
+		x: number;
+		y: number;
+		skin: Skin;
+		r: number;
+		g: number;
+		b: number;
+		a: number;
+		time: number;
+		flipX: boolean;
+		flipY: boolean;
 
-        updateWorldTransform(): void;
-        setToSetupPose(): void;
-        setBonesToSetupPose(): void;
-        setSlotsToSetupPose(): void;
-        getRootBone(): Bone;
-        findBone(boneName: string): Bone;
-        fineBoneIndex(boneName: string): number;
-        findSlot(slotName: string): Slot;
-        findSlotIndex(slotName: string): number;
-        setSkinByName(skinName: string): void;
-        setSkin(newSkin: Skin): void;
-        getAttachmentBySlotName(slotName: string, attachmentName: string): RegionAttachment;
-        getAttachmentBySlotIndex(slotIndex: number, attachmentName: string): RegionAttachment;
-        setAttachment(slotName: string, attachmentName: string): void;
-        update(data: number): void;
+		updateWorldTransform(): void;
+		setToSetupPose(): void;
+		setBonesToSetupPose(): void;
+		setSlotsToSetupPose(): void;
+		getRootBone(): Bone;
+		findBone(boneName: string): Bone;
+		fineBoneIndex(boneName: string): number;
+		findSlot(slotName: string): Slot;
+		findSlotIndex(slotName: string): number;
+		setSkinByName(skinName: string): void;
+		setSkin(newSkin: Skin): void;
+		getAttachmentBySlotName(slotName: string, attachmentName: string): RegionAttachment;
+		getAttachmentBySlotIndex(slotIndex: number, attachmentName: string): RegionAttachment;
+		setAttachment(slotName: string, attachmentName: string): void;
+		update(data: number): void;
 
-    }
+	}
 
-    export class RegionAttachment {
+	export class RegionAttachment {
 
-        offset: number[];
-        uvs: number[];
-        x: number;
-        y: number;
-        rotation: number;
-        scaleX: number;
-        scaleY: number;
-        width: number;
-        height: number;
-        rendererObject: any;
-        regionOffsetX: number;
-        regionOffsetY: number;
-        regionWidth: number;
-        regionHeight: number;
-        regionOriginalWidth: number;
-        regionOriginalHeight: number;
+		offset: number[];
+		uvs: number[];
+		x: number;
+		y: number;
+		rotation: number;
+		scaleX: number;
+		scaleY: number;
+		width: number;
+		height: number;
+		rendererObject: any;
+		regionOffsetX: number;
+		regionOffsetY: number;
+		regionWidth: number;
+		regionHeight: number;
+		regionOriginalWidth: number;
+		regionOriginalHeight: number;
 
-        setUVs(u: number, v: number, u2: number, v2: number, rotate: number): void;
-        updateOffset(): void;
-        computeVertices(x: number, y: number, bone: Bone, vertices: number[]): void;
+		setUVs(u: number, v: number, u2: number, v2: number, rotate: number): void;
+		updateOffset(): void;
+		computeVertices(x: number, y: number, bone: Bone, vertices: number[]): void;
 
-    }
+	}
 
-    export class AnimationStateData {
+	export class AnimationStateData {
 
-        constructor(skeletonData: SkeletonData);
+		constructor(skeletonData: SkeletonData);
 
-        skeletonData: SkeletonData;
-        animationToMixTime: any;
-        defaultMix: number;
+		skeletonData: SkeletonData;
+		animationToMixTime: any;
+		defaultMix: number;
 
-        setMixByName(fromName: string, toName: string, duration: number): void;
-        setMix(from: string, to: string): number;
+		setMixByName(fromName: string, toName: string, duration: number): void;
+		setMix(from: string, to: string): number;
 
-    }
+	}
 
-    export class AnimationState {
+	export class AnimationState {
 
-        constructor(stateData: any);
+		constructor(stateData: any);
 
-        animationSpeed: number;
-        current: any;
-        previous: any;
-        currentTime: number;
-        previousTime: number;
-        currentLoop: boolean;
-        previousLoop: boolean;
-        mixTime: number;
-        mixDuration: number;
-        queue: Animation[];
+		animationSpeed: number;
+		current: any;
+		previous: any;
+		currentTime: number;
+		previousTime: number;
+		currentLoop: boolean;
+		previousLoop: boolean;
+		mixTime: number;
+		mixDuration: number;
+		queue: Animation[];
 
-        update(delta: number): void;
-        apply(skeleton: any): void;
-        clearAnimation(): void;
-        setAnimation(animation: any, loop: boolean): void;
-        setAnimationByName(animationName: string, loop: boolean): void;
-        addAnimationByName(animationName: string, loop: boolean, delay: number): void;
-        addAnimation(animation: any, loop: boolean, delay: number): void;
-        isComplete(): number;
+		update(delta: number): void;
+		apply(skeleton: any): void;
+		clearAnimation(): void;
+		setAnimation(animation: any, loop: boolean): void;
+		setAnimationByName(animationName: string, loop: boolean): void;
+		addAnimationByName(animationName: string, loop: boolean, delay: number): void;
+		addAnimation(animation: any, loop: boolean, delay: number): void;
+		isComplete(): number;
 
-    }
+	}
 
-    export class SkeletonJson {
+	export class SkeletonJson {
 
-        constructor(attachmentLoader: AtlasAttachmentLoader);
+		constructor(attachmentLoader: AtlasAttachmentLoader);
 
-        attachmentLoader: AtlasAttachmentLoader;
-        scale: number;
+		attachmentLoader: AtlasAttachmentLoader;
+		scale: number;
 
-        readSkeletonData(root: any): SkeletonData;
-        readAttachment(skin: Skin, name: string, map: any): RegionAttachment;
-        readAnimation(name: string, map: any, skeletonData: SkeletonData): void;
-        readCurve(timeline: ISpineTimeline, frameIndex: number, valueMap: any): void;
-        toColor(hexString: string, colorIndex: number): number;
+		readSkeletonData(root: any): SkeletonData;
+		readAttachment(skin: Skin, name: string, map: any): RegionAttachment;
+		readAnimation(name: string, map: any, skeletonData: SkeletonData): void;
+		readCurve(timeline: ISpineTimeline, frameIndex: number, valueMap: any): void;
+		toColor(hexString: string, colorIndex: number): number;
 
-    }
+	}
 
-    export class Atlas {
+	export class Atlas {
 
-        static FORMAT: {
+		static FORMAT: {
 
-            alpha: number;
-            intensity: number;
-            luminanceAlpha: number;
-            rgb565: number;
-            rgba4444: number;
-            rgb888: number;
-            rgba8888: number;
+			alpha: number;
+			intensity: number;
+			luminanceAlpha: number;
+			rgb565: number;
+			rgba4444: number;
+			rgb888: number;
+			rgba8888: number;
 
-        };
+		};
 
-        static TextureFilter: {
+		static TextureFilter: {
 
-            nearest: number;
-            linear: number;
-            mipMap: number;
-            mipMapNearestNearest: number;
-            mipMapLinearNearest: number;
-            mipMapNearestLinear: number;
-            mipMapLinearLinear: number;
+			nearest: number;
+			linear: number;
+			mipMap: number;
+			mipMapNearestNearest: number;
+			mipMapLinearNearest: number;
+			mipMapNearestLinear: number;
+			mipMapLinearLinear: number;
 
-        };
+		};
 
-        static textureWrap: {
+		static textureWrap: {
 
-            mirroredRepeat: number;
-            clampToEdge: number;
-            repeat: number;
+			mirroredRepeat: number;
+			clampToEdge: number;
+			repeat: number;
 
-        };
+		};
 
-        constructor(atlasText: string, textureLoader: AtlasLoader);
+		constructor(atlasText: string, textureLoader: AtlasLoader);
 
-        textureLoader: AtlasLoader;
-        pages: AtlasPage[];
-        regions: AtlasRegion[];
+		textureLoader: AtlasLoader;
+		pages: AtlasPage[];
+		regions: AtlasRegion[];
 
-        findRegion(name: string): AtlasRegion;
-        dispose(): void;
-        updateUVs(page: AtlasPage): void;
+		findRegion(name: string): AtlasRegion;
+		dispose(): void;
+		updateUVs(page: AtlasPage): void;
 
-    }
+	}
 
-    export class AtlasPage {
+	export class AtlasPage {
 
-        name: string;
-        format: number;
-        minFilter: number;
-        magFilter: number;
-        uWrap: number;
-        vWrap: number;
-        rendererObject: any;
-        width: number;
-        height: number;
+		name: string;
+		format: number;
+		minFilter: number;
+		magFilter: number;
+		uWrap: number;
+		vWrap: number;
+		rendererObject: any;
+		width: number;
+		height: number;
 
-    }
+	}
 
-    export class AtlasRegion {
+	export class AtlasRegion {
 
-        page: AtlasPage;
-        name: string;
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-        u: number;
-        v: number;
-        u2: number;
-        v2: number;
-        offsetX: number;
-        offsetY: number;
-        originalWidth: number;
-        originalHeight: number;
-        index: number;
-        rotate: boolean;
-        splits: any[];
-        pads: any[];
+		page: AtlasPage;
+		name: string;
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+		u: number;
+		v: number;
+		u2: number;
+		v2: number;
+		offsetX: number;
+		offsetY: number;
+		originalWidth: number;
+		originalHeight: number;
+		index: number;
+		rotate: boolean;
+		splits: any[];
+		pads: any[];
 
-    }
+	}
 
-    export class AtlasReader {
+	export class AtlasReader {
 
-        constructor(text: string);
+		constructor(text: string);
 
-        lines: string[];
-        index: number;
+		lines: string[];
+		index: number;
 
-        trim(value: string): string;
-        readLine(): string;
-        readValue(): string;
-        readTuple(tuple: number): number;
+		trim(value: string): string;
+		readLine(): string;
+		readValue(): string;
+		readTuple(tuple: number): number;
 
-    }
+	}
 
-    export class AtlasAttachmentLoader {
+	export class AtlasAttachmentLoader {
 
-        constructor(atlas: Atlas);
+		constructor(atlas: Atlas);
 
-        atlas: Atlas;
+		atlas: Atlas;
 
-        newAttachment(skin: Skin, type: number, name: string): RegionAttachment;
+		newAttachment(skin: Skin, type: number, name: string): RegionAttachment;
 
-    }
+	}
 
-    export class Spine extends DisplayObjectContainer {
+	export class Spine extends DisplayObjectContainer {
 
-        constructor(url: string);
+		constructor(url: string);
 
-        autoUpdate: boolean;
-        spineData: any;
-        skeleton: Skeleton;
-        stateData: AnimationStateData;
-        state: AnimationState;
-        slotContainers: DisplayObjectContainer[];
+		autoUpdate: boolean;
+		spineData: any;
+		skeleton: Skeleton;
+		stateData: AnimationStateData;
+		state: AnimationState;
+		slotContainers: DisplayObjectContainer[];
 
-        createSprite(slot: Slot, descriptor: { name: string }): Sprite[];
-        update(dt: number): void;
+		createSprite(slot: Slot, descriptor: { name: string }): Sprite[];
+		update(dt: number): void;
 
-    }
+	}
 
 }
 
 declare function requestAnimFrame(callback: Function): void;
 
 declare module PIXI.PolyK {
-    export function Triangulate(p: number[]): number[];
+	export function Triangulate(p: number[]): number[];
 }
